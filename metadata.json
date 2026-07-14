@@ -1,0 +1,6 @@
+{
+  "name": "Homedate Website",
+  "description": "Website giới thiệu Homedate hiện đại, sang trọng, tối ưu trải nghiệm người dùng và dễ dàng tùy biến.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
