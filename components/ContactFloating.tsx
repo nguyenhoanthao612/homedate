@@ -6,8 +6,16 @@ import { Phone, MessageCircle, X } from 'lucide-react';
 import { homedateData } from '@/data/homedate-config';
 import { FacebookIcon, MessengerIcon, ZaloIcon, TikTokIcon, InstagramIcon } from '@/components/BrandLogos';
 
-export default function ContactFloating() {
+interface ContactFloatingProps {
+  selectedBranchId: string;
+}
+
+export default function ContactFloating({ selectedBranchId }: ContactFloatingProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const activeBranch = homedateData.branches?.find(b => b.id === selectedBranchId) || {
+    phone: homedateData.brand.phone,
+  };
 
   const contacts = [
     {
@@ -15,7 +23,7 @@ export default function ContactFloating() {
       label: 'Gọi điện thoại',
       icon: Phone,
       color: 'bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/20 text-white rounded-full',
-      link: `tel:${homedateData.brand.phone}`,
+      link: `tel:${activeBranch.phone}`,
     },
     homedateData.brand.zalo && {
       id: 'zalo',
@@ -82,12 +90,12 @@ export default function ContactFloating() {
                   className="flex items-center space-x-3 group"
                 >
                   {/* Tooltip */}
-                  <span className="bg-luxury-950 text-white text-xs font-semibold tracking-wider uppercase px-3 py-1.5 shadow-xl border border-luxury-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  <span className="bg-white text-slate-800 text-xs font-bold tracking-wider uppercase px-3 py-1.5 shadow-xl border border-slate-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     {contact.label}
                   </span>
                   
-                  {/* Centered Circular Button Container */}
-                  <div className="w-14 flex items-center justify-center">
+                  {/* Circular Button Wrapper to align its center with the main toggle button (w-14) */}
+                  <div className="w-14 flex justify-center">
                     <button
                       onClick={() => handleOpenLink(contact.link)}
                       className={`${contact.color} w-11 h-11 flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none cursor-pointer`}
@@ -109,7 +117,7 @@ export default function ContactFloating() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={`w-14 h-14 flex items-center justify-center shadow-xl focus:outline-none relative cursor-pointer rounded-full ${
-          isOpen ? 'bg-luxury-950 text-gold-400 border border-luxury-800' : 'bg-gold-500 hover:bg-gold-600 text-white shadow-gold-500/30'
+          isOpen ? 'bg-white text-gold-600 border border-slate-200' : 'bg-gold-500 hover:bg-gold-600 text-white shadow-gold-500/30'
         }`}
         aria-label="Contact options"
       >
@@ -122,7 +130,7 @@ export default function ContactFloating() {
           <motion.div
             initial={{ rotate: -90, scale: 0.8 }}
             animate={{ rotate: 0, scale: 1 }}
-            className="flex items-center justify-center text-gold-400"
+            className="flex flex-col items-center justify-center text-gold-600"
           >
             <X className="w-5 h-5 stroke-[2px]" />
           </motion.div>

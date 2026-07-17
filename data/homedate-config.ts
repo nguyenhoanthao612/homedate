@@ -52,6 +52,7 @@ export interface HomedateConfig {
   // 4. DANH SÁCH PHÒNG (PHÒNG)
   rooms: {
     id: string;            // ID phòng (unique, vd: "deluxe-ocean", "family-suite")
+    branchId: string;      // ID chi nhánh sở hữu phòng này (vd: "branch-valley-hill", "branch-pine-forest")
     name: string;          // Tên phòng
     basePrice: number;     // Giá từ (VNĐ/đêm)
     priceDisplay: string;  // Chuỗi giá hiển thị (vd: "1.200.000đ")
@@ -74,25 +75,36 @@ export interface HomedateConfig {
     date: string;          // Ngày đánh giá
     content: string;       // Nội dung đánh giá
   }[];
+
+  // 6. DANH SÁCH CHI NHÁNH
+  branches: {
+    id: string;            // ID chi nhánh
+    name: string;          // Tên chi nhánh
+    address: string;       // Địa chỉ chi nhánh
+    phone: string;         // Số điện thoại liên hệ chi nhánh
+    phoneDisplay: string;  // Số điện thoại hiển thị chi nhánh
+    email?: string;        // Email chi nhánh (nếu có)
+    mapEmbedUrl: string;   // Bản đồ Google Maps nhúng chi nhánh
+  }[];
 }
 
 export const homedateData: HomedateConfig = {
   brand: {
-    name: "L'Amour Villa Homedate",
+    name: "Alma Home",
     slogan: "Không gian mộc mạc, chạm nhẹ xúc cảm bình yên",
-    logoText: "L'Amour Villa",
-    logoImage: "", // Để trống để dùng logoText dạng chữ sang trọng
-    phone: "0987654321",
-    phoneDisplay: "098.765.4321",
-    email: "lamourvilla@gmail.com",
-    address: "Số 15 Đường Hoa Hồng, Phường 4, TP. Đà Lạt, Lâm Đồng",
+    logoText: "Alma Home",
+    logoImage: "/logo.png", // Để trống để dùng logoText dạng chữ sang trọng
+    phone: "0336124797",
+    phoneDisplay: "(+84) 336.124.797",
+    email: "almahome.sg@gmail.com",
+    address: "611/14B Điện Biên Phủ, Phường 1, Quận 3, TP.HCM",
     // Bản đồ nhúng - chỉ cần copy src từ thẻ iframe chia sẻ của Google Maps
-    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.743126861214!2d108.43574977598858!3d11.9230554873887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317113171658cb0b%3A0xbbfd1182062fe7bd!2sDalat%20Flower%20Park!5e0!3m2!1sen!2svn!4v1700000000000!5m2!1sen!2svn",
+    mapEmbedUrl: "https://maps.google.com/maps?q=611/14B%20%C4%90i%E1%BB%87n%20Bi%C3%AAn%20Ph%E1%BB%A7,%20Ph%C6%B0%E1%BB%9Dng%201,%20Qu%E1%BB%A3n%203,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed",
     facebook: "https://facebook.com",
-    messenger: "https://m.me/lamourvilla",
-    zalo: "https://zalo.me/0987654321",
-    tiktok: "https://tiktok.com",
-    instagram: "https://instagram.com"
+    messenger: "https://m.me/almahome",
+    zalo: "https://zalo.me/0336124797",
+    tiktok: "https://tiktok.com/@almahomesg",
+    instagram: "https://instagram.com/almahomesg"
   },
   hero: {
     isVideo: false, // Bạn có thể chuyển sang true nếu có tệp video nền mp4
@@ -102,9 +114,9 @@ export const homedateData: HomedateConfig = {
     secondaryCtaText: "Xem phòng trống"
   },
   about: {
-    title: "Chạm Đến Bình Yên Giữa Lòng Đà Lạt",
-    subtitle: "Về L'Amour Villa",
-    description: "Nằm nép mình giữa thung lũng thông xanh rì rào, L'Amour Villa mang đến cho du khách một kỳ nghỉ dưỡng đích thực, nơi tách biệt hoàn toàn khỏi những khói bụi ồn ào của phố thị. Tại đây, bạn sẽ được đánh thức bởi tiếng chim hót líu lo, ngắm nhìn sương mờ ôm lượn quanh sườn đồi, và hít hà hương hoa thơm ngát phảng phất trong từng ngọn gió se lạnh. L'Amour Villa tự hào kết hợp hoàn hảo giữa nét mộc mạc nguyên bản và tiện nghi hiện đại tinh tế, tạo nên một chốn dừng chân ấm cúng như chính ngôi nhà của bạn.",
+    title: "Chạm đến bình yên giữa lòng Sài Gòn",
+    subtitle: "Về Alma Home",
+    description: "Nằm nép mình giữa những góc phố bình yên và rợp bóng cây xanh, Alma Home mang đến cho du khách một không gian nghỉ dưỡng đích thực, nơi tách biệt hoàn toàn khỏi những khói bụi ồn ào của phố thị. Tại đây, bạn sẽ được tận hưởng những phút giây thư thái nhất, lắng nghe tiếng chim hót líu lo chào ngày mới, và hít hà hương hoa thơm ngát phảng phất trong sân vườn ngập nắng. Alma Home tự hào kết hợp hoàn hảo giữa nét mộc mạc nguyên bản và tiện nghi hiện đại tinh tế, tạo nên một chốn dừng chân ấm cúng như chính ngôi nhà của bạn.",
     images: [
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200",
@@ -113,15 +125,15 @@ export const homedateData: HomedateConfig = {
     highlights: [
       {
         title: "Vị trí đắc địa",
-        description: "Chỉ cách trung tâm 5 phút di chuyển nhưng hoàn toàn yên tĩnh, bao quanh bởi rừng thông thơ mộng."
+        description: "Tọa lạc tại những vị trí trung tâm sầm uất nhưng vẫn giữ trọn vẹn được sự yên tĩnh và riêng tư tuyệt đối."
       },
       {
-        title: "Tầm nhìn thung lũng",
-        description: "Tất cả các phòng đều sở hữu ban công rộng lớn hướng thẳng ra thung lũng đón sương mai."
+        title: "Không gian xanh mát",
+        description: "Sở hữu những khoảng sân vườn thoáng đãng, ngập tràn ánh nắng và sắc hoa tươi tắn."
       },
       {
-        title: "Trải nghiệm bản địa",
-        description: "Thưởng thức trà Atiso ấm nóng ban sớm và tổ chức tiệc BBQ tối lãng mạn ngoài sân vườn."
+        title: "Trải nghiệm ấm cúng",
+        description: "Thưởng thức tách cà phê thơm ấm ban sớm và những buổi tối lãng mạn, thư giãn bên gia đình."
       }
     ],
     designStyle: {
@@ -142,7 +154,8 @@ export const homedateData: HomedateConfig = {
   rooms: [
     {
       id: "cozy-nest",
-      name: "Phòng Cozy Nest - Tổ Ấm Yên Bình",
+      branchId: "branch-alma-1",
+      name: "Phòng Cozy Nest - Tổ ấm yên bình",
       basePrice: 850000,
       priceDisplay: "850.000đ",
       area: 25,
@@ -169,7 +182,8 @@ export const homedateData: HomedateConfig = {
     },
     {
       id: "valley-view-suite",
-      name: "Phòng Valley View Suite - Tuyệt Tác Sương Mai",
+      branchId: "branch-alma-1",
+      name: "Phòng Valley View Suite - Tuyệt tác sương mai",
       basePrice: 1350000,
       priceDisplay: "1.350.000đ",
       area: 40,
@@ -182,7 +196,7 @@ export const homedateData: HomedateConfig = {
       ],
       videoUrl: "",
       shortDesc: "Sở hữu tầm nhìn triệu đô hướng thẳng ra thung lũng, đón trọn vẹn biển mây bồng bềnh mỗi sáng sớm thức dậy.",
-      fullDesc: "Valley View Suite là hạng phòng cao cấp và được yêu thích nhất tại L'Amour Villa. Toàn bộ mặt trước của phòng là hệ thống kính chạm trần mở ra ban công lộng gió 12m2. Nội thất được chăm chút tỉ mỉ từ bồn tắm nằm gỗ pơ-mu thơm phức đến chiếc ghế lười đọc sách thư giãn cạnh ban công.",
+      fullDesc: "Valley View Suite là hạng phòng cao cấp và được yêu thích nhất tại Alma Home. Toàn bộ mặt trước của phòng là hệ thống kính chạm trần mở ra ban công lộng gió 12m2. Nội thất được chăm chút tỉ mỉ từ bồn tắm nằm gỗ pơ-mu thơm phức đến chiếc ghế lười đọc sách thư giãn cạnh ban công.",
       amenities: [
         "Ban công panorama thung lũng sương",
         "Bồn tắm gỗ pơ-mu thư giãn",
@@ -196,7 +210,8 @@ export const homedateData: HomedateConfig = {
     },
     {
       id: "family-haven",
-      name: "Phòng Family Haven - Gắn Kết Yêu Thương",
+      branchId: "branch-alma-2",
+      name: "Phòng Family Haven - Gắn kết yêu thương",
       basePrice: 1950000,
       priceDisplay: "1.950.000đ",
       area: 60,
@@ -220,6 +235,90 @@ export const homedateData: HomedateConfig = {
         "Sofa bed thông minh tiện dụng",
         "Đầy đủ dụng cụ nấu ăn cơ bản"
       ]
+    },
+    {
+      id: "pine-bungalow",
+      branchId: "branch-alma-2",
+      name: "Phòng Pine Bungalow - Hơi thở đại ngàn",
+      basePrice: 950000,
+      priceDisplay: "950.000đ",
+      area: 30,
+      capacity: "2 người lớn",
+      thumbnail: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Bungalow gỗ tự nhiên mộc mạc ẩn hiện dưới tán thông xanh mát, mang lại sự riêng tư hoàn hảo.",
+      fullDesc: "Pine Bungalow là không gian lãng mạn được bao bọc bởi đồi thông rì rào. Toàn bộ vách tường sử dụng gỗ thông nhập khẩu có hương thơm tự nhiên dịu nhẹ, giúp thư giãn tinh thần và mang đến giấc ngủ ngon sâu lắng. Căn phòng có ô cửa kính tròn độc đáo nhìn thẳng ra khu rừng rậm rạp sương phủ.",
+      amenities: [
+        "Vách gỗ thông tự nhiên tỏa hương thơm",
+        "Cửa sổ kính tròn ngắm rừng thông",
+        "Sân hiên gỗ ngắm bình minh",
+        "Bồn tắm sứ cao cấp",
+        "Trà gừng & Cafe đặc sản Đà Lạt",
+        "Máy sưởi dầu ấm áp",
+        "Trà & Cafe miễn phí mỗi ngày",
+        "Tinh dầu thơm tự nhiên"
+      ]
+    },
+    {
+      id: "forest-cabin",
+      branchId: "branch-alma-3",
+      name: "Phòng Forest Cabin - Bản tình ca ngàn thông",
+      basePrice: 1500000,
+      priceDisplay: "1.500.000đ",
+      area: 45,
+      capacity: "2 người lớn, 1 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1472214222541-d510753a4707?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Thiết kế dạng cabin chữ A hiện đại với vách kính lớn thu trọn vẹn vẻ đẹp hoang sơ của đồi thông.",
+      fullDesc: "Forest Cabin đưa bạn chạm gần hơn vào thiên nhiên hoang sơ với thiết kế chữ A độc đáo cùng mặt kính kịch trần hướng đồi thông rộng lớn. Buổi sáng, những tia nắng vàng len lỏi qua kẽ lá rọi thẳng vào chiếc giường ấm áp. Cabin trang bị đầy đủ tiện nghi đẳng cấp bao gồm bồn tắm gỗ sồi ngoài trời cực chill.",
+      amenities: [
+        "Thiết kế chữ A độc đáo, sang trọng",
+        "Mặt kính panorama rộng mở đón nắng",
+        "Bồn tắm ngoài trời ẩn mình giữa thiên nhiên",
+        "Máy pha cà phê espresso tự động",
+        "Giường King-size tiêu chuẩn resort",
+        "Loa bluetooth xịn nghe nhạc chill",
+        "Tủ lạnh mini bar đầy đủ đồ uống",
+        "Khu vực tiếp khách sang trọng"
+      ]
+    },
+    {
+      id: "lakeview-chalet",
+      branchId: "branch-alma-3",
+      name: "Phòng Lakeview Chalet - Bản giao hưởng hồ Tuyền Lâm",
+      basePrice: 2200000,
+      priceDisplay: "2.200.000đ",
+      area: 70,
+      capacity: "4 người lớn, 2 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn Chalet gỗ rộng lớn hướng mặt về phía hồ Tuyền Lâm phẳng lặng, mang đến trải nghiệm nghỉ dưỡng hoàn mỹ bậc nhất.",
+      fullDesc: "Lakeview Chalet mang đến một định nghĩa hoàn toàn mới về nghỉ dưỡng sang trọng giữa thiên nhiên. Tọa lạc tại vị trí đắc địa nhất của Chi nhánh Đồi Thông, căn Chalet sở hữu không gian phòng khách lớn ấm cúng, 2 phòng ngủ riêng tư và sân ban công gỗ siêu rộng ngắm cảnh hồ Tuyền Lâm mờ ảo trong sương sớm. Đây là lựa chọn hoàn mỹ cho gia đình hoặc nhóm bạn thân.",
+      amenities: [
+        "Tầm nhìn ôm trọn hồ Tuyền Lâm thơ mộng",
+        "Sân ban công gỗ ngoài trời siêu rộng",
+        "2 Phòng ngủ King-size biệt lập",
+        "Khu vực bếp nấu ăn đầy đủ thiết bị",
+        "Hồ nước nóng mini massage ngoài trời",
+        "Lò sưởi củi sưởi ấm truyền thống",
+        "Smart TV 55 inch netflix sẵn",
+        "Đầy đủ dụng cụ nấu ăn cơ bản"
+      ]
     }
   ],
   reviews: [
@@ -229,7 +328,7 @@ export const homedateData: HomedateConfig = {
       avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150",
       rating: 5,
       date: "05/07/2026",
-      content: "Một nơi tuyệt vời để trốn khỏi Sài Gòn ồn ào. Thức dậy mở cửa ra là thấy sương mù phủ khắp thung lũng thông xanh, đẹp rụng rời. Phòng ốc cực kỳ sạch sẽ, thơm tho mùi tinh dầu sả chanh. Chị chủ và các bạn nhân viên siêu mến khách, chỉ tụi mình bao nhiêu quán ăn ngon của người địa phương."
+      content: "Một nơi tuyệt vời để trốn khỏi thành phố ồn ào. Thức dậy mở cửa ra là thấy sương mù phủ khắp thung lũng thông xanh mướt, đẹp bình yên vô cùng. Phòng ốc cực kỳ sạch sẽ, thơm tho mùi tinh dầu tự nhiên dễ chịu. Các bạn nhân viên siêu mến khách và chu đáo, hỗ trợ tụi mình rất nhiệt tình."
     },
     {
       id: "rev-2",
@@ -237,7 +336,7 @@ export const homedateData: HomedateConfig = {
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150",
       rating: 5,
       date: "28/06/2026",
-      content: "Nhà mình ở phòng Family Haven có lối đi thẳng ra sân vườn rất tiện. Các con tha hồ chạy nhảy trên thảm cỏ xanh. Tối đến tụi mình đặt villa set BBQ ngoài trời, đồ ăn ướp siêu ngon, vừa ăn vừa nướng dưới không khí se lạnh 15 độ, cảm giác lãng mạn và ấm cúng vô cùng. Sẽ quay lại nhiều lần nữa!"
+      content: "Nhà mình đi gia đình có con nhỏ, phòng ốc rộng rãi, có khoảng sân vườn cỏ xanh rất tiện cho bé chạy nhảy. Tối đến cả nhà cùng nướng BBQ ngoài trời dưới thời tiết se lạnh, cảm giác ấm cúng vô cùng. Mọi thứ được chuẩn bị chu đáo từ những chi tiết nhỏ nhất. Chắc chắn sẽ quay lại!"
     },
     {
       id: "rev-3",
@@ -245,7 +344,7 @@ export const homedateData: HomedateConfig = {
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150",
       rating: 5,
       date: "15/06/2026",
-      content: "Phòng Valley View Suite thật sự xứng đáng điểm 10 tuyệt đối. Bồn tắm gỗ xịn sò ngắm view thung lũng rất chill. Mình đã có hàng trăm bức ảnh sống ảo tuyệt đẹp ở ban công phòng. Giường ngủ êm như khách sạn 5 sao, ngủ thẳng giấc tới sáng mượt mà. Đánh giá 5 sao cho chất lượng dịch vụ!"
+      content: "Phòng có ban công siêu rộng hướng thẳng ra thung lũng ngắm view mây bay cực chill. Mình đã có cả album ảnh kỷ niệm tuyệt đẹp ở đây. Bồn tắm gỗ ấm áp ngắm cảnh rất thư giãn, giường ngủ êm ái ngủ thẳng giấc tới sáng. Rất hài lòng với chất lượng dịch vụ chu đáo."
     },
     {
       id: "rev-4",
@@ -253,7 +352,36 @@ export const homedateData: HomedateConfig = {
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150",
       rating: 5,
       date: "02/06/2026",
-      content: "Không gian mộc mạc đúng chất Rustic nhưng tiện nghi thì không thiếu thứ gì. Thích nhất là được ngồi nhâm nhi ly trà Atiso nóng ban sớm ngắm thung lũng thơ mộng. Một trải nghiệm chữa lành tuyệt vời mà ai cũng nên thử khi ghé thăm Đà Lạt."
+      content: "Không gian mộc mạc, gần gũi với thiên nhiên nhưng tiện nghi vẫn đầy đủ và hiện đại. Thích nhất cảm giác ngồi nhâm nhi ly trà ấm ban sớm, nghe tiếng chim hót giữa núi đồi tĩnh lặng. Một trải nghiệm chữa lành và nạp lại năng lượng tuyệt vời."
+    }
+  ],
+  branches: [
+    {
+      id: "branch-alma-1",
+      name: "Alma Home 1",
+      address: "611/14B Điện Biên Phủ, Phường 1, Quận 3, TP.HCM",
+      phone: "0336124797",
+      phoneDisplay: "(+84) 336.124.797",
+      email: "almahome.sg@gmail.com",
+      mapEmbedUrl: "https://maps.google.com/maps?q=611/14B%20%C4%90i%E1%BB%87n%20Bi%C3%AAn%20Ph%E1%BB%A7,%20Ph%C6%B0%E1%BB%9Dng%201,%20Qu%E1%BB%A3n%203,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+    },
+    {
+      id: "branch-alma-2",
+      name: "Alma Home 2",
+      address: "178/4/14A Phan Đăng Lưu, Phường 3, Quận Phú Nhuận, TP.HCM",
+      phone: "0336124797",
+      phoneDisplay: "(+84) 336.124.797",
+      email: "almahome.sg@gmail.com",
+      mapEmbedUrl: "https://maps.google.com/maps?q=178/4/14A%20Phan%20%C4%90%C4%83ng%20L%C6%B0u,%20Ph%C6%B0%E1%BB%9Dng%203,%20Qu%E1%BB%A3n%20Ph%C3%BA%20Nhu%E1%BA%ADn,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+    },
+    {
+      id: "branch-alma-3",
+      name: "Alma Home 3",
+      address: "45A Hoa Hồng, Phường 2, Quận Phú Nhuận, TP.HCM",
+      phone: "0336124797",
+      phoneDisplay: "(+84) 336.124.797",
+      email: "almahome.sg@gmail.com",
+      mapEmbedUrl: "https://maps.google.com/maps?q=Alma+Home+03+-+Hoa+H%E1%BB%93ng&t=&z=16&ie=UTF8&iwloc=&output=embed"
     }
   ]
 };

@@ -17,8 +17,15 @@ import {
 } from 'lucide-react';
 import { homedateData } from '@/data/homedate-config';
 
+const formatBranchName = (name: string) => {
+  let cleaned = name.replace(/Alma Home - /g, '');
+  cleaned = cleaned.replace(/\s*\(.*?\)\s*/g, '').trim();
+  return cleaned;
+};
+
 interface Room {
   id: string;
+  branchId: string;
   name: string;
   basePrice: number;
   priceDisplay: string;
@@ -32,7 +39,11 @@ interface Room {
   amenities: string[];
 }
 
-export default function Rooms() {
+interface RoomsProps {
+  selectedBranchId: string;
+}
+
+export default function Rooms({ selectedBranchId }: RoomsProps) {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -70,9 +81,17 @@ export default function Rooms() {
     setActiveImgIndex((prev) => (prev === 0 ? selectedRoom.gallery.length - 1 : prev - 1));
   };
 
-  const handleBooking = () => {
-    window.open(homedateData.brand.zalo || `tel:${homedateData.brand.phone}`, '_blank');
+  const activeBranch = homedateData.branches?.find(b => b.id === selectedBranchId) || {
+    name: homedateData.brand.name,
+    phone: homedateData.brand.phone,
   };
+
+  const filteredRooms = homedateData.rooms.filter(room => room.branchId === selectedBranchId);
+
+  const handleBooking = () => {
+    window.open(homedateData.brand.zalo || `tel:${activeBranch.phone}`, '_blank');
+  };
+
 
   return (
     <section id="phong" className="py-24 md:py-32 bg-luxury-50 text-luxury-900">
@@ -83,31 +102,47 @@ export default function Rooms() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs tracking-[0.3em] uppercase text-gold-600 font-bold block mb-3"
+            className="text-sm tracking-wide text-gold-600 font-semibold block mb-3"
           >
-            Nơi dừng chân hoàn hảo
+            Nơi dừng chân hoàn hảo ({formatBranchName(activeBranch.name)})
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-luxury-950 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-luxury-950 tracking-normal"
           >
-            Danh Sách Phòng Nghỉ
+            Danh sách phòng nghỉ
           </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="h-[3px] bg-gold-400 w-20 mx-auto mt-6"
-          />
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <motion.div
+              initial={{ scaleX: 0, originX: 1 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-[1.5px] w-16 bg-gradient-to-l from-gold-500 to-transparent origin-right"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0, rotate: 45 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 45 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.7, type: "spring", stiffness: 300, damping: 15 }}
+              className="w-2.5 h-2.5 bg-gold-500 shadow-[0_0_10px_rgba(212,175,55,0.85)]"
+            />
+            <motion.div
+              initial={{ scaleX: 0, originX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-[1.5px] w-16 bg-gradient-to-r from-gold-500 to-transparent origin-left"
+            />
+          </div>
         </div>
 
         {/* Rooms Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {homedateData.rooms.map((room, idx) => (
+          {filteredRooms.map((room, idx) => (
             <motion.div
               key={room.id}
               initial={{ opacity: 0, y: 30 }}
@@ -155,7 +190,7 @@ export default function Rooms() {
 
                 <button
                   onClick={() => openDetails(room)}
-                  className="mt-4 w-full bg-transparent hover:bg-gold-500 text-luxury-900 hover:text-white font-display font-bold text-xs tracking-widest uppercase py-3 border border-luxury-300 hover:border-gold-500 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  className="mt-4 w-full bg-transparent hover:bg-gold-500 text-luxury-900 hover:text-white font-display font-medium text-sm tracking-normal py-2.5 border border-luxury-300 hover:border-gold-500 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Xem chi tiết
                   <ChevronRight className="w-4 h-4" />
@@ -200,7 +235,7 @@ export default function Rooms() {
                     />
                     <button
                       onClick={() => setIsVideoPlaying(false)}
-                      className="absolute bottom-4 left-4 z-40 bg-luxury-950/85 text-white hover:bg-gold-500 hover:text-white px-4 py-2 text-xs tracking-widest uppercase cursor-pointer rounded-full"
+                      className="absolute bottom-4 left-4 z-40 bg-luxury-950/85 text-white hover:bg-gold-500 hover:text-white px-4 py-2 text-sm font-medium tracking-normal cursor-pointer rounded-full"
                     >
                       Xem ảnh phòng
                     </button>
@@ -243,10 +278,10 @@ export default function Rooms() {
                       {selectedRoom.videoUrl && (
                         <button
                           onClick={() => setIsVideoPlaying(true)}
-                          className="bg-gold-500 hover:bg-gold-600 text-white px-3.5 py-1.5 text-xs font-bold tracking-widest uppercase flex items-center gap-1 shadow-lg cursor-pointer rounded-full"
+                          className="bg-gold-500 hover:bg-gold-600 text-white px-3.5 py-1.5 text-xs font-semibold tracking-normal flex items-center gap-1 shadow-lg cursor-pointer rounded-full"
                         >
                           <Play className="w-3 h-3 fill-current" />
-                          Xem Video
+                          Xem video
                         </button>
                       )}
                     </div>
@@ -257,17 +292,17 @@ export default function Rooms() {
               {/* Right Column: Information & Actions (5 Cols) */}
               <div className="md:col-span-5 p-6 sm:p-8 md:p-10 flex flex-col justify-between overflow-y-auto max-h-[50vh] md:max-h-[80vh]">
                 <div>
-                  <span className="text-xs tracking-[0.2em] uppercase text-gold-600 font-bold block mb-2">
+                  <span className="text-sm tracking-wide text-gold-600 font-semibold block mb-2">
                     Chi tiết phòng nghỉ
                   </span>
-                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-luxury-950 tracking-tight leading-tight mb-4">
+                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-luxury-950 tracking-normal leading-tight mb-4">
                     {selectedRoom.name}
                   </h3>
 
                   {/* Pricing and Parameters */}
                   <div className="border-y border-luxury-200 py-4 mb-6 flex justify-between items-center">
                     <div>
-                      <p className="text-xs text-luxury-400 uppercase tracking-wider font-semibold mb-1">
+                      <p className="text-xs text-luxury-400 tracking-normal font-semibold mb-1">
                         Giá thuê / Đêm
                       </p>
                       <p className="text-xl sm:text-2xl font-display font-black text-gold-500">
@@ -275,7 +310,7 @@ export default function Rooms() {
                       </p>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs text-luxury-400 uppercase tracking-wider font-semibold mb-1">
+                      <p className="text-xs text-luxury-400 tracking-normal font-semibold mb-1">
                         Diện tích & Sức chứa
                       </p>
                       <p className="text-sm font-semibold text-luxury-700">
@@ -293,7 +328,7 @@ export default function Rooms() {
 
                   {/* Amenities List */}
                   <div>
-                    <h4 className="font-display font-bold text-xs tracking-widest uppercase text-luxury-900 mb-4">
+                    <h4 className="font-display font-semibold text-sm tracking-normal text-luxury-900 mb-4">
                       Tiện ích cao cấp của phòng:
                     </h4>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-0">
@@ -313,7 +348,7 @@ export default function Rooms() {
                 <div className="mt-8 border-t border-luxury-200 pt-6">
                   <button
                     onClick={handleBooking}
-                    className="w-full bg-gold-500 hover:bg-gold-600 text-white font-display font-bold text-sm tracking-widest uppercase py-4 rounded-full transition-all duration-300 shadow-xl hover:shadow-gold-500/20 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-gold-500 hover:bg-gold-600 text-white font-display font-medium text-base tracking-normal py-3.5 rounded-full transition-all duration-300 shadow-xl hover:shadow-gold-500/20 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Calendar className="w-4 h-4" />
                     Đặt phòng ngay hôm nay

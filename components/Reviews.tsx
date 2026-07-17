@@ -43,31 +43,53 @@ export default function Reviews() {
   };
 
   return (
-    <section id="danh-gia" className="py-24 md:py-32 bg-luxury-950 text-white overflow-hidden relative">
+    <section id="danh-gia" className="py-24 md:py-32 bg-white text-slate-800 overflow-hidden relative border-t border-slate-100">
       {/* Decorative ambient blobs */}
       <div className="absolute top-1/4 left-10 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-luxury-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-slate-100/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-          <span className="text-xs tracking-[0.3em] uppercase text-gold-400 font-bold block mb-3">
+        <div className="text-center max-w-full mx-auto mb-16 md:mb-24">
+          <span className="text-sm tracking-wide text-gold-600 font-bold block mb-3">
             Cảm nhận từ khách hàng
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white tracking-tight">
-            Khách Hàng Nói Gì Về Chúng Tôi
+          <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 tracking-normal whitespace-nowrap">
+            Khách hàng nói gì về chúng tôi
           </h2>
-          <div className="h-[3px] bg-gold-400 w-20 mx-auto mt-6" />
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <motion.div
+              initial={{ scaleX: 0, originX: 1 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-[1.5px] w-16 bg-gradient-to-l from-gold-500 to-transparent origin-right"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0, rotate: 45 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 45 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.7, type: "spring", stiffness: 300, damping: 15 }}
+              className="w-2.5 h-2.5 bg-gold-500 shadow-[0_0_10px_rgba(212,175,55,0.85)]"
+            />
+            <motion.div
+              initial={{ scaleX: 0, originX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="h-[1.5px] w-16 bg-gradient-to-r from-gold-500 to-transparent origin-left"
+            />
+          </div>
         </div>
 
         {/* Carousel Slider Panel */}
         <div 
-          className="relative max-w-4xl mx-auto bg-luxury-900 border border-luxury-800 p-8 sm:p-12 md:p-16 shadow-2xl rounded-3xl"
+          className="relative max-w-4xl mx-auto bg-slate-50 border border-slate-200 p-8 sm:p-12 md:p-16 shadow-xl rounded-3xl"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Quote icon accent */}
-          <div className="absolute top-6 left-6 text-luxury-800 pointer-events-none">
+          <div className="absolute top-6 left-6 text-slate-200 pointer-events-none">
             <Quote className="w-16 h-16 stroke-[1px] rotate-180 opacity-50" />
           </div>
 
@@ -88,32 +110,29 @@ export default function Reviews() {
                       key={idx}
                       className={`w-4 h-4 ${
                         idx < homedateData.reviews[activeIndex].rating
-                          ? 'text-gold-400 fill-gold-400'
-                          : 'text-luxury-700'
+                          ? 'text-gold-500 fill-gold-500'
+                          : 'text-slate-200'
                       }`}
                     />
                   ))}
                 </div>
 
                 {/* Feedback Content */}
-                <p className="text-base sm:text-lg md:text-xl text-luxury-200 leading-relaxed font-medium italic text-center sm:text-left">
+                <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-medium italic text-center sm:text-left">
                   &ldquo;{homedateData.reviews[activeIndex].content}&rdquo;
                 </p>
 
                 {/* User Bio */}
-                <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4 border-t border-luxury-800">
+                <div className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4 border-t border-slate-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={homedateData.reviews[activeIndex].avatar}
                     alt={homedateData.reviews[activeIndex].name}
-                    className="w-12 h-12 rounded-full object-cover border border-gold-400/30"
+                    className="w-12 h-12 rounded-full object-cover border border-gold-300"
                   />
                   <div className="text-center sm:text-left">
-                    <p className="font-display font-bold text-sm text-white tracking-wide">
+                    <p className="font-display font-bold text-sm text-slate-900 tracking-wide">
                       {homedateData.reviews[activeIndex].name}
-                    </p>
-                    <p className="text-xs text-luxury-400 font-mono tracking-wider">
-                      Đã lưu trú vào {homedateData.reviews[activeIndex].date}
                     </p>
                   </div>
                 </div>
@@ -125,14 +144,14 @@ export default function Reviews() {
           <div className="absolute bottom-6 right-6 flex space-x-2">
             <button
               onClick={handlePrev}
-              className="p-2.5 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-white transition-colors border border-luxury-800 rounded-full cursor-pointer"
+              className="p-2.5 bg-white hover:bg-gold-500 text-slate-500 hover:text-white transition-colors border border-slate-200 rounded-full cursor-pointer"
               aria-label="Previous review"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="p-2.5 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-white transition-colors border border-luxury-800 rounded-full cursor-pointer"
+              className="p-2.5 bg-white hover:bg-gold-500 text-slate-500 hover:text-white transition-colors border border-slate-200 rounded-full cursor-pointer"
               aria-label="Next review"
             >
               <ChevronRight className="w-4 h-4" />
@@ -147,7 +166,7 @@ export default function Reviews() {
               key={idx}
               onClick={() => setActiveIndex(idx)}
               className={`h-2 transition-all duration-300 rounded-full cursor-pointer ${
-                idx === activeIndex ? 'w-8 bg-gold-400' : 'w-2 bg-luxury-800 hover:bg-luxury-700'
+                idx === activeIndex ? 'w-8 bg-gold-500' : 'w-2 bg-slate-200 hover:bg-slate-300'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
