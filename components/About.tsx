@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { homedateData } from '@/data/homedate-config';
 import { getIcon } from '@/lib/icons';
 
 export default function About() {
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [dragStartY, setDragStartY] = useState<number | null>(null);
 
   const nextImage = () => {
     setCurrentImgIndex((prev) => (prev === homedateData.about.images.length - 1 ? 0 : prev + 1));
@@ -99,7 +100,47 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative aspect-4/3 w-full overflow-hidden shadow-2xl rounded-3xl"
+              className="relative aspect-4/3 w-full overflow-hidden shadow-2xl rounded-3xl cursor-ew-resize select-none touch-pan-y"
+              onPointerDown={(e) => {
+                if ((e.target as HTMLElement).closest('.progress-bar-container')) return;
+                setDragStartX(e.clientX);
+                setDragStartY(e.clientY);
+              }}
+              onPointerUp={(e) => {
+                if (dragStartX === null || dragStartY === null) return;
+                const diffX = e.clientX - dragStartX;
+                const diffY = e.clientY - dragStartY;
+                const rect = e.currentTarget.getBoundingClientRect();
+
+                // If vertical movement is greater than horizontal movement, it is a scroll attempt, so ignore it
+                if (Math.abs(diffY) > Math.abs(diffX)) {
+                  setDragStartX(null);
+                  setDragStartY(null);
+                  return;
+                }
+
+                if (Math.abs(diffX) > 40) {
+                  if (diffX > 0) {
+                    prevImage();
+                  } else {
+                    nextImage();
+                  }
+                } else if (Math.abs(diffX) <= 10 && Math.abs(diffY) <= 10) {
+                  // Click gesture
+                  const clickX = e.clientX - rect.left;
+                  if (clickX < rect.width / 2) {
+                    prevImage();
+                  } else {
+                    nextImage();
+                  }
+                }
+                setDragStartX(null);
+                setDragStartY(null);
+              }}
+              onPointerCancel={() => {
+                setDragStartX(null);
+                setDragStartY(null);
+              }}
             >
               {homedateData.about.images.map((img, idx) => (
                 <div
@@ -113,31 +154,28 @@ export default function About() {
                     src={img}
                     alt={`Không gian homestay ${idx + 1}`}
                     className="w-full h-full object-cover"
+                    draggable="false"
                   />
                 </div>
               ))}
 
-              {/* Slider Arrows */}
-              <div className="absolute bottom-4 right-4 z-20 flex space-x-2">
-                <button
-                  onClick={prevImage}
-                  className="p-3 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-luxury-950 transition-colors cursor-pointer"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="p-3 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-luxury-950 transition-colors cursor-pointer"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Counter Indicator */}
-              <div className="absolute top-4 left-4 z-20 bg-luxury-950/80 backdrop-blur-sm px-3.5 py-1.5 text-xs text-white tracking-widest font-mono">
-                {currentImgIndex + 1} / {homedateData.about.images.length}
+              {/* Dot Indicators */}
+              <div className="progress-bar-container absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+                {homedateData.about.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCurrentImgIndex(idx);
+                    }}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      idx === currentImgIndex 
+                        ? 'w-5 bg-gold-500 shadow-[0_0_8px_rgba(212,175,55,0.6)]' 
+                        : 'w-2 bg-white/50 hover:bg-white/80'
+                    }`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
               </div>
             </motion.div>
           </div>

@@ -209,6 +209,114 @@ export const homedateData: HomedateConfig = {
       ]
     },
     {
+      id: "branch-1-garden-room",
+      branchId: "branch-alma-1",
+      name: "Phòng Garden View - Ban mai rực rỡ",
+      basePrice: 950000,
+      priceDisplay: "950.000đ",
+      area: 28,
+      capacity: "2 người lớn",
+      thumbnail: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Phòng ngủ xinh xắn ngập tràn ánh nắng tự nhiên với cửa sổ kính rộng mở thẳng ra khu vườn hồng đầy hương sắc.",
+      fullDesc: "Phòng Garden View được bày trí theo phong cách mộc mạc tối giản nhưng không kém phần tinh tế. Với vách kính đón trọn vẹn bình minh và một ban công gỗ xinh xắn bên hông, bạn sẽ cảm giác như đang được bao bọc bởi cây cỏ và sắc hoa rực rỡ buổi sớm.",
+      amenities: [
+        "Giường Double cỡ lớn",
+        "Cửa kính đón nắng sớm",
+        "Phòng tắm vách kính hiện đại",
+        "Ban công ngắm hoa riêng",
+        "Ấm đun nước & trà gói",
+        "Smart TV kết nối wifi",
+        "Dọn phòng miễn phí hàng ngày"
+      ]
+    },
+    {
+      id: "branch-1-studio-comfort",
+      branchId: "branch-alma-1",
+      name: "Phòng Studio Comfort - Nhịp sống phố thị",
+      basePrice: 1100000,
+      priceDisplay: "1.100.000đ",
+      area: 35,
+      capacity: "2 người lớn, 1 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn hộ studio đầy đủ tiện nghi, có tích hợp bếp mini tiện lợi để tự tay chuẩn bị những bữa ăn ấm cúng.",
+      fullDesc: "Studio Comfort mang đến sự tiện nghi của một ngôi nhà thu nhỏ. Căn phòng sở hữu thiết kế thông minh với phòng ngủ kết hợp khu bếp nấu ăn nhỏ gọn, trang bị tủ lạnh, lò vi sóng cùng bàn ăn tinh tế bằng gỗ sồi. Thích hợp cho những chuyến lưu trú dài ngày.",
+      amenities: [
+        "Giường King-size êm ái",
+        "Bếp mini & dụng cụ nấu ăn",
+        "Tủ lạnh gia đình cỡ vừa",
+        "Bàn ăn tối tinh xảo",
+        "Lò vi sóng & ấm đun nước",
+        "Sofa tiếp khách thoải mái",
+        "Điều hòa hai chiều thông minh"
+      ]
+    },
+    {
+      id: "branch-1-loft-premium",
+      branchId: "branch-alma-1",
+      name: "Phòng Loft Premium - Gác xếp mộng mơ",
+      basePrice: 1250000,
+      priceDisplay: "1.250.000đ",
+      area: 38,
+      capacity: "2 người lớn, 2 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn gác lửng độc đáo với ô kính tròn nhìn trời sao đêm, nơi nuôi dưỡng những mộng mơ ngọt ngào.",
+      fullDesc: "Loft Premium sở hữu cấu trúc gác lửng thời thượng kết hợp trần nhà cao thoáng đãng. Chiếc giường ngủ chính đặt trên gác lửng ấm cúng, phía dưới là phòng khách rộng rãi cùng bồn tắm gỗ sồi ngâm chân thư giãn. Một trải nghiệm kiến trúc hoàn toàn mới lạ.",
+      amenities: [
+        "Thiết kế gác lửng sáng tạo",
+        "Cửa sổ giếng trời ngắm sao",
+        "Sofa giường lớn tầng trệt",
+        "Bồn tắm nằm gỗ sồi cổ điển",
+        "Hệ thống loa âm trần",
+        "Máy chiếu phim màn ảnh rộng",
+        "Trà & cafe đặc sản miễn phí"
+      ]
+    },
+    {
+      id: "branch-1-penthouse-urban",
+      branchId: "branch-alma-1",
+      name: "Phòng Penthouse Urban - Đỉnh cao thư thái",
+      basePrice: 2500000,
+      priceDisplay: "2.500.000đ",
+      area: 75,
+      capacity: "4 người lớn, 2 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1502672012114-1e5256e36d4a?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1502672012114-1e5256e36d4a?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn hộ áp mái thượng lưu với sân vườn trên mây, bể jacuzzi sang chảnh ôm trọn thành phố lộng lẫy.",
+      fullDesc: "Penthouse Urban là lựa chọn đỉnh cao nhất tại chi nhánh Quận 3. Với không gian cực kỳ rộng rãi bao gồm 2 phòng ngủ riêng biệt, phòng khách sang trọng nối liền khoảng sân thượng xanh mướt ngập tràn sắc hoa và bồn sục jacuzzi sưởi ấm, giúp bạn tận hưởng tối đa sự xa hoa giữa thiên nhiên.",
+      amenities: [
+        "2 phòng ngủ King-size biệt lập",
+        "Bể sục Jacuzzi nước ấm ngoài trời",
+        "Sân vườn thượng uyển trên mây",
+        "Phòng ăn rộng lớn cho gia đình",
+        "Hệ thống âm thanh hi-end cực đỉnh",
+        "Khu bếp nấu nướng hiện đại",
+        "Bar mini tự pha chế cực chill"
+      ]
+    },
+    {
       id: "family-haven",
       branchId: "branch-alma-2",
       name: "Phòng Family Haven - Gắn kết yêu thương",
@@ -259,9 +367,113 @@ export const homedateData: HomedateConfig = {
         "Sân hiên gỗ ngắm bình minh",
         "Bồn tắm sứ cao cấp",
         "Trà gừng & Cafe đặc sản Đà Lạt",
-        "Máy sưởi dầu ấm áp",
+        "Máy sưởi sưởi ấm dịu nhẹ",
         "Trà & Cafe miễn phí mỗi ngày",
         "Tinh dầu thơm tự nhiên"
+      ]
+    },
+    {
+      id: "branch-2-standard-twin",
+      branchId: "branch-alma-2",
+      name: "Phòng Standard Twin - Kết nối tâm giao",
+      basePrice: 800000,
+      priceDisplay: "800.000đ",
+      area: 28,
+      capacity: "2 người lớn",
+      thumbnail: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Bố trí 2 giường đơn độc lập, mang lại sự riêng tư thoải mái tối đa cho những chuyến đi công tác hoặc bạn bè thân thiết.",
+      fullDesc: "Standard Twin được tối ưu hóa sự thoải mái với hai chiếc giường đơn êm ái biệt lập. Phong cách trang trí kết hợp giữa tông gỗ trầm ấm áp và các mảng màu xanh xám mát dịu, giúp tinh thần lắng dịu sau ngày dài khám phá Sài Gòn.",
+      amenities: [
+        "2 giường đơn chuẩn khách sạn",
+        "Bàn làm việc thông minh",
+        "Tủ quần áo gỗ sồi lớn",
+        "Két sắt an toàn trong phòng",
+        "Điều hòa hai chiều tiết kiệm điện",
+        "Đầy đủ dụng cụ pha trà, cafe"
+      ]
+    },
+    {
+      id: "branch-2-deluxe-balcony",
+      branchId: "branch-alma-2",
+      name: "Phòng Deluxe Balcony - Góc nhỏ đón nắng",
+      basePrice: 1150000,
+      priceDisplay: "1.150.000đ",
+      area: 35,
+      capacity: "2 người lớn, 1 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1611891404114-5090bc24c32d?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Sở hữu ban công ngắm nhìn phố xá yên bình với hàng cây xanh ngợp bóng, mang hơi thở thiên nhiên tươi mát.",
+      fullDesc: "Deluxe Balcony đem đến bầu không khí thoáng đãng ngập tràn. Bạn có thể mở toang hệ cửa lùa bằng kính để bước ra ban công lộng gió ngắm những vòm cây, ngồi thưởng trà nghe nhạc thư giãn. Toàn bộ nội thất cao cấp mang lại sự thoải mái trọn vẹn nhất.",
+      amenities: [
+        "Ban công riêng lộng gió",
+        "Bàn ghế thưởng trà ngoài trời",
+        "Giường đôi cỡ lớn cao cấp",
+        "Smart TV 50 inch netflix sẵn",
+        "Bồn tắm vách kính sang trọng",
+        "Tinh dầu sả chanh thư thái"
+      ]
+    },
+    {
+      id: "branch-2-executive-suite",
+      branchId: "branch-alma-2",
+      name: "Phòng Executive Suite - Sang trọng đẳng cấp",
+      basePrice: 1700000,
+      priceDisplay: "1.700.000đ",
+      area: 50,
+      capacity: "2 người lớn, 2 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Hạng phòng suite thượng lưu với phòng khách tách biệt riêng tư và bồn tắm nằm gỗ pơ-mu cực sang chảnh.",
+      fullDesc: "Executive Suite là biểu tượng của cuộc sống hoàng gia mộc mạc. Sự pha trộn tài tình giữa chất liệu gỗ thông mộc đỏ ấm áp và những chiếc đèn lồng làm thủ công tinh xảo, bồn tắm nằm gỗ pơ-mu tỏa hương thơm thư giãn hỗ trợ phục hồi sức khỏe diệu kỳ.",
+      amenities: [
+        "Phòng ngủ & phòng khách biệt lập",
+        "Bồn tắm nằm pơ-mu thơm dịu",
+        "Sofa giường thông minh lớn",
+        "Tủ lạnh quầy bar mini cao cấp",
+        "Hệ thống loa âm thanh cao cấp",
+        "Dịch vụ trà chiều phục vụ tận phòng"
+      ]
+    },
+    {
+      id: "branch-2-garden-cabin",
+      branchId: "branch-alma-2",
+      name: "Phòng Garden Cabin - Bình yên ngõ nhỏ",
+      basePrice: 1000000,
+      priceDisplay: "1.000.000đ",
+      area: 32,
+      capacity: "2 người lớn",
+      thumbnail: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn cabin nhỏ xinh ẩn mình trong khu vườn riêng rợp bóng mát cây xanh, cho bạn không gian riêng tư tối đa.",
+      fullDesc: "Garden Cabin là khoảng lánh đời tuyệt hảo. Chỉ vài bước chân từ cửa gỗ mộc mạc, bạn đã đứng giữa khu vườn hồng xinh đẹp và những ngõ nhỏ xanh tươi rộn rã tiếng chim hót. Căn phòng trang trí giản dị nhưng chu đáo vô cùng.",
+      amenities: [
+        "Cabin sân vườn biệt lập",
+        "Sân vườn riêng ngập hoa hồng",
+        "Vòi hoa sen massage sảng khoái",
+        "Bàn ăn tối dã ngoại ngoài trời",
+        "Máy sưởi ấm cúng buổi tối",
+        "Trà thảo mộc & bánh ngọt đón khách"
       ]
     },
     {
@@ -318,6 +530,111 @@ export const homedateData: HomedateConfig = {
         "Lò sưởi củi sưởi ấm truyền thống",
         "Smart TV 55 inch netflix sẵn",
         "Đầy đủ dụng cụ nấu ăn cơ bản"
+      ]
+    },
+    {
+      id: "branch-3-vintage-attic",
+      branchId: "branch-alma-3",
+      name: "Phòng Vintage Attic - Hồi ức ngọt ngào",
+      basePrice: 900000,
+      priceDisplay: "900.000đ",
+      area: 30,
+      capacity: "2 người lớn",
+      thumbnail: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn gác mái đậm chất hoài cổ mang phong cách cổ điển lãng mạn, kể lại câu chuyện về những hồi ức ngọt ngào.",
+      fullDesc: "Vintage Attic với trần gỗ xéo ấm cúng và ánh sáng vàng hổ phách dịu êm đưa bạn về thế giới của sự mộng mơ và lắng đọng. Căn phòng sử dụng những món đồ decor tuyển chọn từ vải thô, đệm gối thổ cẩm thêu tay và một chiếc máy phát nhạc đĩa than ấm áp.",
+      amenities: [
+        "Gác mái cổ điển ấm cúng",
+        "Máy nghe nhạc đĩa than vintage",
+        "Đệm ngủ thổ cẩm handmade",
+        "Góc đọc sách yên tĩnh đón nắng",
+        "Bồn ngâm chân thảo mộc sẵn",
+        "Ấm đun nước & trà gói hảo hạng"
+      ]
+    },
+    {
+      id: "branch-3-sunshine-studio",
+      branchId: "branch-alma-3",
+      name: "Phòng Sunshine Studio - Nắng ấm ban mai",
+      basePrice: 1200000,
+      priceDisplay: "1.200.000đ",
+      area: 36,
+      capacity: "2 người lớn, 1 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Thiết kế mở thông minh đón trọn vẹn những tia nắng vàng rực rỡ buổi sớm mai nhảy nhót quanh phòng ngủ.",
+      fullDesc: "Sunshine Studio sở hữu ba mặt kính cường lực đón nắng tuyệt hảo hướng ra thung lũng sâu, mang lại cảm giác rộng mở sảng khoái tối đa. Gian phòng ngủ sáng sủa kết hợp nhẹ nhàng với một góc làm việc yên tĩnh ngập sắc xanh cây cảnh.",
+      amenities: [
+        "Vách kính đón nắng 270 độ",
+        "Góc làm việc yên tĩnh xanh mát",
+        "Giường đôi cao cấp King-size",
+        "Smart TV màn hình cong hiện đại",
+        "Bồn tắm vách kính ngoài trời",
+        "Hộp quà bánh sừng bò tiếp đón"
+      ]
+    },
+    {
+      id: "branch-3-royal-suite",
+      branchId: "branch-alma-3",
+      name: "Phòng Royal Suite - Hoàng gia quý phái",
+      basePrice: 2100000,
+      priceDisplay: "2.100.000đ",
+      area: 55,
+      capacity: "2 người lớn, 2 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Tận hưởng cuộc sống xa hoa với phòng tắm xông hơi đá muối Himalaya riêng ngay trong căn phòng hoàng gia quý phái.",
+      fullDesc: "Royal Suite là sự giao thoa kiệt xuất giữa nghỉ dưỡng xa xỉ và thiên nhiên thanh lành. Điểm đắt giá nhất chính là phòng xông hơi hồng ngoại đá muối Himalaya riêng biệt, đem lại trải nghiệm chăm sóc cơ thể thải độc sâu sắc nhất ngay tại giường ngủ của bạn.",
+      amenities: [
+        "Phòng xông hơi đá muối riêng",
+        "Bồn tắm sục nước jacuzzi",
+        "Giường siêu lớn tơ lụa mềm mịn",
+        "Nước ép hoa quả tươi đón mừng",
+        "Hệ thống âm thanh Bluetooth hi-end",
+        "Dịch vụ quản gia túc trực riêng"
+      ]
+    },
+    {
+      id: "branch-3-family-large",
+      branchId: "branch-alma-3",
+      name: "Phòng Family Suite Large - Sum vầy ấm cúng",
+      basePrice: 2600000,
+      priceDisplay: "2.600.000đ",
+      area: 80,
+      capacity: "6 người lớn, 3 trẻ em",
+      thumbnail: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=800",
+      gallery: [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200"
+      ],
+      videoUrl: "",
+      shortDesc: "Căn villa gia đình cực đại với 3 giường đôi khổng lồ, bếp đầy đủ lò nướng phục vụ các buổi party ấm áp.",
+      fullDesc: "Family Suite Large được ví như một căn biệt thự thu nhỏ ấm cúng. Nơi đây sở hữu 3 phòng ngủ giường đôi riêng biệt, khu sinh hoạt chung với một phòng bếp cỡ đại đầy đủ lò nướng, nồi lẩu hiện đại. Sân hiên lớn lát gỗ cho phép nướng BBQ ngoài trời, tạo ra những ký ức gia đình vô cùng trọn vẹn.",
+      amenities: [
+        "3 phòng ngủ giường đôi cỡ đại",
+        "Bếp nấu & Lò nướng nướng bánh",
+        "Sân ban công tiệc BBQ lớn",
+        "2 phòng tắm rộng lớn riêng biệt",
+        "Máy chiếu phim tại phòng khách",
+        "Trò chơi gia đình phong phú sẵn",
+        "Dịch vụ chuẩn bị sẵn than củi nướng"
       ]
     }
   ],

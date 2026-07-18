@@ -5,11 +5,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Maximize2, 
   Users, 
+  ChevronLeft,
   ChevronRight, 
   X, 
   Check, 
-  ChevronLeft, 
-  ChevronRight as ChevronRightIcon, 
   Play, 
   Pause,
   Phone,
@@ -43,10 +42,60 @@ interface RoomsProps {
   selectedBranchId: string;
 }
 
+const chunkRooms = (rooms: Room[], size: number) => {
+  const chunks = [];
+  for (let i = 0; i < rooms.length; i += size) {
+    chunks.push(rooms.slice(i, i + size));
+  }
+  return chunks;
+};
+
 export default function Rooms({ selectedBranchId }: RoomsProps) {
+  const [prevSelectedBranchId, setPrevSelectedBranchId] = useState(selectedBranchId);
+  const [activeBranchId, setActiveBranchId] = useState(selectedBranchId);
+  const [prevActiveBranchId, setPrevActiveBranchId] = useState(selectedBranchId);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  if (selectedBranchId !== prevSelectedBranchId) {
+    setPrevSelectedBranchId(selectedBranchId);
+    setActiveBranchId(selectedBranchId);
+    setPrevActiveBranchId(selectedBranchId);
+    setCurrentPage(0);
+  }
+
+  if (activeBranchId !== prevActiveBranchId) {
+    setPrevActiveBranchId(activeBranchId);
+    setCurrentPage(0);
+  }
+
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [dragStartY, setDragStartY] = useState<number | null>(null);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const cardWidth = container.clientWidth;
+    if (cardWidth > 0) {
+      const newPage = Math.round(scrollPosition / cardWidth);
+      if (newPage !== currentPage) {
+        setCurrentPage(newPage);
+      }
+    }
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const scrollAmount = container.clientWidth;
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
 
   // Disable body scroll when modal is open using an effect
   React.useEffect(() => {
@@ -81,23 +130,24 @@ export default function Rooms({ selectedBranchId }: RoomsProps) {
     setActiveImgIndex((prev) => (prev === 0 ? selectedRoom.gallery.length - 1 : prev - 1));
   };
 
-  const activeBranch = homedateData.branches?.find(b => b.id === selectedBranchId) || {
+  const activeBranch = homedateData.branches?.find(b => b.id === activeBranchId) || {
+    id: activeBranchId,
     name: homedateData.brand.name,
     phone: homedateData.brand.phone,
   };
 
-  const filteredRooms = homedateData.rooms.filter(room => room.branchId === selectedBranchId);
+  const filteredRooms = homedateData.rooms.filter(room => room.branchId === activeBranchId);
+  const roomPages = chunkRooms(filteredRooms, 3);
 
   const handleBooking = () => {
     window.open(homedateData.brand.zalo || `tel:${activeBranch.phone}`, '_blank');
   };
 
-
   return (
     <section id="phong" className="py-24 md:py-32 bg-luxury-50 text-luxury-900">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+        <div className="text-center max-w-2xl mx-auto mb-12">
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -140,64 +190,163 @@ export default function Rooms({ selectedBranchId }: RoomsProps) {
           </div>
         </div>
 
-        {/* Rooms Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          {filteredRooms.map((room, idx) => (
-            <motion.div
-              key={room.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="bg-white border border-luxury-200 rounded-3xl overflow-hidden flex flex-col group shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              {/* Thumbnail Container */}
-              <div className="relative aspect-3/2 overflow-hidden bg-luxury-950">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={room.thumbnail}
-                  alt={room.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute top-4 left-4 bg-luxury-950/80 backdrop-blur-sm px-3.5 py-1.5 text-xs font-semibold text-gold-400 tracking-wider rounded-full">
-                  Chỉ từ {room.priceDisplay} / đêm
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-6 md:p-8 flex-grow flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-luxury-950 mb-3 group-hover:text-gold-600 transition-colors">
-                    {room.name}
-                  </h3>
-                  
-                  {/* Basic Room Specs */}
-                  <div className="flex items-center space-x-6 text-xs text-luxury-500 font-medium tracking-wide mb-4">
-                    <span className="flex items-center gap-1.5">
-                      <Maximize2 className="w-3.5 h-3.5 text-gold-400" />
-                      {room.area} m²
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Users className="w-3.5 h-3.5 text-gold-400" />
-                      {room.capacity}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-luxury-600 line-clamp-2 leading-relaxed mb-6">
-                    {room.shortDesc}
-                  </p>
-                </div>
-
+        {/* Branch Selection Segmented Control */}
+        <div className="flex justify-center mb-16 px-4">
+          <div className="bg-luxury-100/80 p-1.5 rounded-full inline-flex items-center gap-1.5 max-w-full overflow-x-auto scrollbar-none border border-luxury-200/50">
+            {homedateData.branches?.map((branch) => {
+              const isActive = branch.id === activeBranchId;
+              const branchRoomCount = homedateData.rooms.filter(r => r.branchId === branch.id).length;
+              return (
                 <button
-                  onClick={() => openDetails(room)}
-                  className="mt-4 w-full bg-transparent hover:bg-gold-500 text-luxury-900 hover:text-white font-display font-medium text-sm tracking-normal py-2.5 border border-luxury-300 hover:border-gold-500 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  key={branch.id}
+                  onClick={() => setActiveBranchId(branch.id)}
+                  className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full font-display font-semibold text-sm md:text-base tracking-normal transition-colors duration-300 flex items-center gap-2 cursor-pointer relative whitespace-nowrap ${
+                    isActive ? 'text-white' : 'text-luxury-700 hover:text-gold-600'
+                  }`}
                 >
-                  Xem chi tiết
-                  <ChevronRight className="w-4 h-4" />
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeBranchSegment"
+                      className="absolute inset-0 bg-gold-500 rounded-full shadow-[0_4px_12px_rgba(212,175,55,0.25)]"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      style={{ zIndex: 0 }}
+                    />
+                  )}
+                  <span className="relative z-10">{formatBranchName(branch.name)}</span>
+                  <span className={`relative z-10 text-[10px] md:text-xs px-2 py-0.5 rounded-full font-sans transition-colors duration-300 ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-luxury-200 text-luxury-500'
+                  }`}>
+                    {branchRoomCount} phòng
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Horizontal Slider Area with arrows */}
+        <div className="relative w-full group">
+          {/* Left Arrow Button (Desktop only) */}
+          {filteredRooms.length > 3 && (
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-[-20px] xl:left-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              aria-label="Slide left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          )}
+
+          {/* Right Arrow Button (Desktop only) */}
+          {filteredRooms.length > 3 && (
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-[-20px] xl:right-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              aria-label="Slide right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+
+          {/* Rooms Carousel Container (No Line Wrap) */}
+          <div
+            key={activeBranchId}
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 w-full scrollbar-none [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {roomPages.map((page, pageIdx) => (
+              <div
+                key={pageIdx}
+                className="w-full flex-shrink-0 snap-center px-4 md:px-12"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                  {page.map((room, idx) => (
+                    <motion.div
+                      key={room.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      className="w-full bg-white border border-luxury-200 rounded-3xl overflow-hidden flex flex-col group/card shadow-md hover:shadow-xl transition-all duration-300"
+                    >
+                      {/* Thumbnail Container */}
+                      <div className="relative aspect-3/2 overflow-hidden bg-luxury-950">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={room.thumbnail}
+                          alt={room.name}
+                          className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute top-4 left-4 bg-luxury-950/80 backdrop-blur-sm px-3.5 py-1.5 text-xs font-semibold text-gold-400 tracking-wider rounded-full">
+                          Chỉ từ {room.priceDisplay} / đêm
+                        </div>
+                      </div>
+
+                      {/* Card Body */}
+                      <div className="p-6 md:p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-display font-bold text-lg md:text-xl text-luxury-950 mb-3 group-hover/card:text-gold-600 transition-colors line-clamp-1">
+                            {room.name}
+                          </h3>
+                          
+                          {/* Basic Room Specs */}
+                          <div className="flex items-center space-x-6 text-xs text-luxury-500 font-medium tracking-wide mb-4">
+                            <span className="flex items-center gap-1.5">
+                              <Maximize2 className="w-3.5 h-3.5 text-gold-400" />
+                              {room.area} m²
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Users className="w-3.5 h-3.5 text-gold-400" />
+                              {room.capacity}
+                            </span>
+                          </div>
+
+                          <p className="text-sm text-luxury-600 line-clamp-2 leading-relaxed mb-6">
+                            {room.shortDesc}
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => openDetails(room)}
+                          className="mt-4 w-full bg-transparent hover:bg-gold-500 text-luxury-900 hover:text-white font-display font-medium text-sm tracking-normal py-2.5 border border-luxury-300 hover:border-gold-500 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                          Xem chi tiết
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
+          {/* Pagination dots */}
+          {roomPages.length > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-6">
+              {roomPages.map((_, pageIdx) => (
+                <button
+                  key={pageIdx}
+                  onClick={() => {
+                    const container = scrollContainerRef.current;
+                    if (container) {
+                      container.scrollTo({
+                        left: pageIdx * container.clientWidth,
+                        behavior: 'smooth'
+                      });
+                      setCurrentPage(pageIdx);
+                    }
+                  }}
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    currentPage === pageIdx ? 'bg-gold-500 w-6' : 'bg-luxury-200 hover:bg-gold-300 w-2.5'
+                  }`}
+                  aria-label={`Go to page ${pageIdx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -241,7 +390,49 @@ export default function Rooms({ selectedBranchId }: RoomsProps) {
                     </button>
                   </div>
                 ) : (
-                  <>
+                  <div
+                    className="absolute inset-0 w-full h-full cursor-ew-resize select-none touch-pan-y"
+                    onPointerDown={(e) => {
+                      if ((e.target as HTMLElement).closest('.progress-bar-container') || (e.target as HTMLElement).closest('.video-launcher-btn')) return;
+                      setDragStartX(e.clientX);
+                      setDragStartY(e.clientY);
+                    }}
+                    onPointerUp={(e) => {
+                      if (dragStartX === null || dragStartY === null) return;
+                      const diffX = e.clientX - dragStartX;
+                      const diffY = e.clientY - dragStartY;
+                      const rect = e.currentTarget.getBoundingClientRect();
+
+                      // If vertical movement is greater than horizontal movement, it is a scroll attempt, so ignore it
+                      if (Math.abs(diffY) > Math.abs(diffX)) {
+                        setDragStartX(null);
+                        setDragStartY(null);
+                        return;
+                      }
+
+                      if (Math.abs(diffX) > 40) {
+                        if (diffX > 0) {
+                          prevModalImage();
+                        } else {
+                          nextModalImage();
+                        }
+                      } else if (Math.abs(diffX) <= 10 && Math.abs(diffY) <= 10) {
+                        // Click gesture
+                        const clickX = e.clientX - rect.left;
+                        if (clickX < rect.width / 2) {
+                          prevModalImage();
+                        } else {
+                          nextModalImage();
+                        }
+                      }
+                      setDragStartX(null);
+                      setDragStartY(null);
+                    }}
+                    onPointerCancel={() => {
+                      setDragStartX(null);
+                      setDragStartY(null);
+                    }}
+                  >
                     {/* Image Slide */}
                     <div className="absolute inset-0 w-full h-full">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -249,43 +440,45 @@ export default function Rooms({ selectedBranchId }: RoomsProps) {
                         src={selectedRoom.gallery[activeImgIndex]}
                         alt={`${selectedRoom.name} gallery ${activeImgIndex + 1}`}
                         className="w-full h-full object-cover transition-all duration-500"
+                        draggable="false"
                       />
                     </div>
 
-                    {/* Navigation Buttons */}
-                    <div className="absolute bottom-4 right-4 z-30 flex space-x-2">
-                      <button
-                        onClick={prevModalImage}
-                        className="p-2.5 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-white transition-colors cursor-pointer rounded-full"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={nextModalImage}
-                        className="p-2.5 bg-luxury-950/80 hover:bg-gold-500 text-white hover:text-white transition-colors cursor-pointer rounded-full"
-                        aria-label="Next image"
-                      >
-                        <ChevronRightIcon className="w-4 h-4" />
-                      </button>
+                    {/* Dot Indicators */}
+                    <div className="progress-bar-container absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+                      {selectedRoom.gallery.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImgIndex(idx);
+                          }}
+                          className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                            idx === activeImgIndex 
+                              ? 'w-5 bg-gold-500 shadow-[0_0_8px_rgba(212,175,55,0.6)]' 
+                              : 'w-2 bg-white/50 hover:bg-white/80'
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      ))}
                     </div>
 
-                    {/* Left corner: Photo Counter & Video Launcher (if available) */}
-                    <div className="absolute bottom-4 left-4 z-30 flex items-center space-x-2">
-                      <span className="bg-luxury-950/80 backdrop-blur-sm px-3.5 py-1.5 text-xs text-white tracking-widest font-mono rounded-full">
-                        {activeImgIndex + 1} / {selectedRoom.gallery.length}
-                      </span>
-                      {selectedRoom.videoUrl && (
+                    {/* Video Launcher (if available) - positioned higher than progress bar */}
+                    {selectedRoom.videoUrl && (
+                      <div className="video-launcher-btn absolute bottom-6 left-4 z-30">
                         <button
-                          onClick={() => setIsVideoPlaying(true)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsVideoPlaying(true);
+                          }}
                           className="bg-gold-500 hover:bg-gold-600 text-white px-3.5 py-1.5 text-xs font-semibold tracking-normal flex items-center gap-1 shadow-lg cursor-pointer rounded-full"
                         >
                           <Play className="w-3 h-3 fill-current" />
                           Xem video
                         </button>
-                      )}
-                    </div>
-                  </>
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
 
