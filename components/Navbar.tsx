@@ -89,7 +89,6 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('trang-chu');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
   // Listen to scroll to update background and active sections
   useEffect(() => {
@@ -319,69 +318,8 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
           </button>
         </div>
 
-        {/* Mobile Actions: Branch Selector + Hamburger Toggle */}
-        <div className="md:hidden flex items-center space-x-2">
-          {homedateData.branches && homedateData.branches.length > 0 && (
-            <div className="relative">
-              <button
-                onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-                className="flex items-center space-x-1 px-3 py-1.5 rounded-full border border-slate-200 bg-white/95 text-slate-800 text-xs font-bold transition-all duration-300 shadow-sm relative group cursor-pointer"
-              >
-                <MapPin className={`w-3.5 h-3.5 ${currentTheme.textClass}`} />
-                <span className="max-w-[80px] truncate">{formatBranchName(activeBranch.name)}</span>
-                <ChevronDown className="w-3 h-3 text-slate-500" />
-              </button>
-
-              <AnimatePresence>
-                {isMobileDropdownOpen && (
-                  <>
-                    {/* Overlay to close the dropdown when clicking outside */}
-                    <div 
-                      className="fixed inset-0 z-40" 
-                      onClick={() => setIsMobileDropdownOpen(false)} 
-                    />
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-1 w-56 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 z-50 text-slate-800"
-                    >
-                      {homedateData.branches.map((branch) => {
-                        const bTheme = branchThemes[branch.id] || defaultTheme;
-                        const isActive = selectedBranchId === branch.id;
-                        return (
-                          <button
-                            key={branch.id}
-                            onClick={() => {
-                              setSelectedBranchId(branch.id);
-                              setIsMobileDropdownOpen(false);
-                            }}
-                            className={`w-full text-left px-3 py-2 transition-all duration-300 flex flex-col gap-0.5 cursor-pointer border-l-4 ${
-                              isActive
-                                ? `${bTheme.activeBgClass} border-l-current font-semibold`
-                                : `border-l-transparent text-slate-600 ${bTheme.hoverBgClass}`
-                            }`}
-                            style={{
-                              borderLeftColor: isActive ? `rgb(${bTheme.rgbColor})` : undefined
-                            }}
-                          >
-                            <span className={`text-xs font-bold ${isActive ? bTheme.textClass : 'text-slate-700'}`}>
-                              {formatBranchName(branch.name)}
-                            </span>
-                            <span className="text-[10px] text-slate-400 line-clamp-1">
-                              {branch.address}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </motion.div>
-                  </>
-                )}
-              </AnimatePresence>
-            </div>
-          )}
-
+        {/* Mobile Hamburger Toggle */}
+        <div className="md:hidden flex items-center">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-slate-800 hover:text-gold-600 focus:outline-none p-2 cursor-pointer transition-colors duration-500"
