@@ -105,8 +105,8 @@ export const homedateData: HomedateConfig = {
     address: "611/14B Điện Biên Phủ, Phường 1, Quận 3, TP.HCM",
     // Bản đồ nhúng - chỉ cần copy src từ thẻ iframe chia sẻ của Google Maps
     mapEmbedUrl: "https://maps.google.com/maps?q=611/14B%20%C4%90i%E1%BB%87n%20Bi%C3%AAn%20Ph%E1%BB%A7,%20Ph%C6%B0%E1%BB%9Dng%201,%20Qu%E1%BB%A3n%203,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed",
-    facebook: "https://facebook.com",
-    messenger: "https://m.me/almahome",
+    facebook: "https://www.facebook.com/almahomesg/?locale=vi_VN",
+    messenger: "https://m.me/almahomesg",
     zalo: "https://zalo.me/0336124797",
     tiktok: "https://tiktok.com/@almahomesg",
     instagram: "https://instagram.com/almahomesg"
