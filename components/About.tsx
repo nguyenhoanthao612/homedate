@@ -313,8 +313,17 @@ export default function About() {
                     {/* Double Outer Rings for Realistic Craftsmanship */}
                     <div className="w-16 h-16 rounded-full border border-slate-100/80 flex items-center justify-center bg-slate-50/50 group-hover:border-gold-200/50 group-hover:bg-gold-50/30 transition-all duration-500 relative">
                       {/* Inner gold plate wrapper */}
-                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200/60 group-hover:border-gold-400 group-hover:bg-gradient-to-br group-hover:from-gold-400 group-hover:to-gold-500 text-gold-600 group-hover:text-white flex items-center justify-center transition-all duration-500 shadow-sm group-hover:scale-110 group-hover:rotate-6">
-                        <IconComp className="w-5 h-5" />
+                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200/60 group-hover:border-gold-400 group-hover:bg-gradient-to-br group-hover:from-gold-400 group-hover:to-gold-500 text-gold-600 group-hover:text-white flex items-center justify-center transition-all duration-500 shadow-sm group-hover:scale-110 group-hover:rotate-6 overflow-hidden">
+                        {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={item.icon}
+                            alt={item.label}
+                            className="w-6 h-6 object-contain transition-all duration-300"
+                          />
+                        ) : (
+                          <IconComp className="w-5 h-5" />
+                        )}
                       </div>
                     </div>
                   </div>
