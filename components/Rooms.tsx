@@ -40,6 +40,7 @@ interface Room {
 
 interface RoomsProps {
   selectedBranchId: string;
+  setSelectedBranchId?: (id: string) => void;
 }
 
 const chunkRooms = (rooms: Room[], size: number) => {
@@ -50,7 +51,7 @@ const chunkRooms = (rooms: Room[], size: number) => {
   return chunks;
 };
 
-export default function Rooms({ selectedBranchId }: RoomsProps) {
+export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsProps) {
   const [prevSelectedBranchId, setPrevSelectedBranchId] = useState(selectedBranchId);
   const [activeBranchId, setActiveBranchId] = useState(selectedBranchId);
   const [prevActiveBranchId, setPrevActiveBranchId] = useState(selectedBranchId);
@@ -199,7 +200,10 @@ export default function Rooms({ selectedBranchId }: RoomsProps) {
               return (
                 <button
                   key={branch.id}
-                  onClick={() => setActiveBranchId(branch.id)}
+                  onClick={() => {
+                    setActiveBranchId(branch.id);
+                    setSelectedBranchId?.(branch.id);
+                  }}
                   className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full font-display font-semibold text-sm md:text-base tracking-normal transition-colors duration-300 flex items-center gap-2 cursor-pointer relative whitespace-nowrap ${
                     isActive ? 'text-white' : 'text-luxury-700 hover:text-gold-600'
                   }`}

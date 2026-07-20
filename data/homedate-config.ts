@@ -85,6 +85,11 @@ export interface HomedateConfig {
     phoneDisplay: string;  // Số điện thoại hiển thị chi nhánh
     email?: string;        // Email chi nhánh (nếu có)
     mapEmbedUrl: string;   // Bản đồ Google Maps nhúng chi nhánh
+    hero?: {
+      isVideo?: boolean;
+      videoUrl?: string;
+      imageUrl?: string;
+    };
   }[];
 }
 
@@ -680,7 +685,11 @@ export const homedateData: HomedateConfig = {
       phone: "0336124797",
       phoneDisplay: "(+84) 336.124.797",
       email: "almahome.sg@gmail.com",
-      mapEmbedUrl: "https://maps.google.com/maps?q=611/14B%20%C4%90i%E1%BB%87n%20Bi%C3%AAn%20Ph%E1%BB%A7,%20Ph%C6%B0%E1%BB%9Dng%201,%20Qu%E1%BB%A3n%203,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      mapEmbedUrl: "https://maps.google.com/maps?q=611/14B%20%C4%90i%E1%BB%87n%20Bi%C3%AAn%20Ph%E1%BB%A7,%20Ph%C6%B0%E1%BB%9Dng%201,%20Qu%E1%BB%A3n%203,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      hero: {
+        isVideo: false,
+        imageUrl: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1920"
+      }
     },
     {
       id: "branch-alma-2",
@@ -689,7 +698,11 @@ export const homedateData: HomedateConfig = {
       phone: "0336124797",
       phoneDisplay: "(+84) 336.124.797",
       email: "almahome.sg@gmail.com",
-      mapEmbedUrl: "https://maps.google.com/maps?q=178/4/14A%20Phan%20%C4%90%C4%83ng%20L%C6%B0u,%20Ph%C6%B0%E1%BB%9Dng%203,%20Qu%E1%BB%A3n%20Ph%C3%BA%20Nhu%E1%BA%ADn,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      mapEmbedUrl: "https://maps.google.com/maps?q=178/4/14A%20Phan%20%C4%90%C4%83ng%20L%C6%B0u,%20Ph%C6%B0%E1%BB%9Dng%203,%20Qu%E1%BB%A3n%20Ph%C3%BA%20Nhu%E1%BA%ADn,%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      hero: {
+        isVideo: false,
+        imageUrl: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=1920"
+      }
     },
     {
       id: "branch-alma-3",
@@ -698,7 +711,11 @@ export const homedateData: HomedateConfig = {
       phone: "0336124797",
       phoneDisplay: "(+84) 336.124.797",
       email: "almahome.sg@gmail.com",
-      mapEmbedUrl: "https://maps.google.com/maps?q=Alma+Home+03+-+Hoa+H%E1%BB%93ng&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      mapEmbedUrl: "https://maps.google.com/maps?q=Alma+Home+03+-+Hoa+H%E1%BB%93ng&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      hero: {
+        isVideo: false,
+        imageUrl: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1920"
+      }
     }
   ]
 };

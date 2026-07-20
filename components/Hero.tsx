@@ -24,13 +24,16 @@ export default function Hero({ selectedBranchId }: HeroProps) {
     }
   };
 
-  const activeBranch = homedateData.branches?.find(b => b.id === selectedBranchId) || {
-    name: homedateData.brand.name,
-    phone: homedateData.brand.phone,
-  };
+  const activeBranch = homedateData.branches?.find(b => b.id === selectedBranchId);
+  const branchPhone = activeBranch?.phone || homedateData.brand.phone;
+
+  const heroConfig = activeBranch?.hero || homedateData.hero;
+  const isVideo = heroConfig.isVideo;
+  const videoUrl = heroConfig.videoUrl || '';
+  const imageUrl = heroConfig.imageUrl || '';
 
   const handleBooking = () => {
-    window.open(homedateData.brand.zalo || `tel:${activeBranch.phone}`, '_blank');
+    window.open(homedateData.brand.zalo || `tel:${branchPhone}`, '_blank');
   };
 
 
@@ -40,21 +43,31 @@ export default function Hero({ selectedBranchId }: HeroProps) {
       className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-slate-50"
     >
       {/* Background Layer: Video or Image */}
-      {homedateData.hero.isVideo ? (
-        <div className="absolute inset-0 w-full h-full object-cover">
+      {isVideo ? (
+        <motion.div
+          key={`video-${selectedBranchId}`}
+          initial={{ opacity: 0.3 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.0 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
           <video
             autoPlay
             loop
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-100"
-            src={homedateData.hero.videoUrl}
+            src={videoUrl}
           />
-        </div>
+        </motion.div>
       ) : (
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-100 scale-105"
-          style={{ backgroundImage: `url('${homedateData.hero.imageUrl}')` }}
+        <motion.div
+          key={`image-${selectedBranchId}`}
+          initial={{ opacity: 0.3, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1.05 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('${imageUrl}')` }}
         />
       )}
 

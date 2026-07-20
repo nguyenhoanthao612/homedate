@@ -34,7 +34,7 @@ export default function Home() {
         <About />
 
         {/* 4. Rooms Gallery & Detailed Cards Grid */}
-        <Rooms selectedBranchId={selectedBranchId} />
+        <Rooms selectedBranchId={selectedBranchId} setSelectedBranchId={setSelectedBranchId} />
 
         {/* 5. Customer Testimonial Slider */}
         <Reviews />
