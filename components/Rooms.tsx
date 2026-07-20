@@ -155,7 +155,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
             viewport={{ once: true }}
             className="text-sm tracking-wide text-gold-600 font-semibold block mb-3"
           >
-            Nơi dừng chân hoàn hảo ({formatBranchName(activeBranch.name)})
+            Nơi dừng chân hoàn hảo
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
