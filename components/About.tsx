@@ -258,7 +258,7 @@ export default function About() {
             </div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 relative z-10">
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6 relative z-10">
             {homedateData.about.amenities.map((item, idx) => {
               const IconComp = getIcon(item.icon);
               return (
@@ -268,33 +268,33 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center text-center p-5 md:p-6 bg-gradient-to-b from-white via-slate-50/30 to-gold-50/40 border border-gold-300/70 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.1)] rounded-2xl relative overflow-hidden w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(20%-1.25rem)] min-w-[150px] sm:min-w-[180px] max-w-[240px] cursor-default"
+                  className="flex flex-col items-center text-center p-2.5 sm:p-5 md:p-6 bg-gradient-to-b from-white via-slate-50/30 to-gold-50/40 border border-gold-300/70 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.1)] rounded-xl sm:rounded-2xl relative overflow-hidden w-full cursor-default"
                 >
                   {/* Tiny decorative luxury rivet at top */}
-                  <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
+                  <div className="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold-500 shadow-[0_0_6px_rgba(37,99,235,0.4)]" />
                   </div>
 
-                  <div className="relative mb-4 flex items-center justify-center">
+                  <div className="relative mb-2 sm:mb-4 flex items-center justify-center mt-1 sm:mt-0">
                     {/* Double Outer Rings for Realistic Craftsmanship */}
-                    <div className="w-16 h-16 rounded-full border border-gold-200/70 flex items-center justify-center bg-gold-50/60 relative shadow-sm">
+                    <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full border border-gold-200/70 flex items-center justify-center bg-gold-50/60 relative shadow-sm">
                       {/* Inner gold plate wrapper */}
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-white border border-gold-400 flex items-center justify-center shadow-md overflow-hidden">
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-white border border-gold-400 flex items-center justify-center shadow-md overflow-hidden">
                         {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={item.icon}
                             alt={item.label}
-                            className="w-6 h-6 object-contain transition-all duration-300"
+                            className="w-4 h-4 sm:w-6 sm:h-6 object-contain transition-all duration-300"
                           />
                         ) : (
-                          <IconComp className="w-5 h-5" />
+                          <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                         )}
                       </div>
                     </div>
                   </div>
 
-                  <span className="text-xs md:text-sm font-bold tracking-wide text-gold-600 relative z-10">
+                  <span className="text-[11px] sm:text-xs md:text-sm font-bold tracking-tight sm:tracking-wide text-gold-600 relative z-10 leading-tight">
                     {item.label}
                   </span>
                 </motion.div>
