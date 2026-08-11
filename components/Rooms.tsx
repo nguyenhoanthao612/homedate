@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Maximize2, 
   Users, 
   ChevronLeft,
   ChevronRight, 
@@ -20,6 +19,34 @@ const formatBranchName = (name: string) => {
   let cleaned = name.replace(/Alma Home - /g, '');
   cleaned = cleaned.replace(/\s*\(.*?\)\s*/g, '').trim();
   return cleaned;
+};
+
+const branchSegmentThemes: Record<string, {
+  bgClass: string;
+  shadowClass: string;
+  hoverClass: string;
+}> = {
+  'branch-alma-1': {
+    bgClass: 'bg-sky-600',
+    shadowClass: 'shadow-[0_4px_12px_rgba(14,165,233,0.3)]',
+    hoverClass: 'hover:text-sky-600',
+  },
+  'branch-alma-2': {
+    bgClass: 'bg-emerald-600',
+    shadowClass: 'shadow-[0_4px_12px_rgba(16,185,129,0.3)]',
+    hoverClass: 'hover:text-emerald-600',
+  },
+  'branch-alma-3': {
+    bgClass: 'bg-rose-600',
+    shadowClass: 'shadow-[0_4px_12px_rgba(244,63,94,0.3)]',
+    hoverClass: 'hover:text-rose-600',
+  }
+};
+
+const defaultSegmentTheme = {
+  bgClass: 'bg-gold-500',
+  shadowClass: 'shadow-[0_4px_12px_rgba(212,175,55,0.25)]',
+  hoverClass: 'hover:text-gold-600',
 };
 
 interface Room {
@@ -197,6 +224,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
             {homedateData.branches?.map((branch) => {
               const isActive = branch.id === activeBranchId;
               const branchRoomCount = homedateData.rooms.filter(r => r.branchId === branch.id).length;
+              const theme = branchSegmentThemes[branch.id] || defaultSegmentTheme;
               return (
                 <button
                   key={branch.id}
@@ -205,13 +233,13 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
                     setSelectedBranchId?.(branch.id);
                   }}
                   className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full font-display font-semibold text-sm md:text-base tracking-normal transition-colors duration-300 flex items-center gap-2 cursor-pointer relative whitespace-nowrap ${
-                    isActive ? 'text-white' : 'text-luxury-700 hover:text-gold-600'
+                    isActive ? 'text-white' : `text-luxury-700 ${theme.hoverClass}`
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeBranchSegment"
-                      className="absolute inset-0 bg-gold-500 rounded-full shadow-[0_4px_12px_rgba(212,175,55,0.25)]"
+                      className={`absolute inset-0 ${theme.bgClass} rounded-full ${theme.shadowClass}`}
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       style={{ zIndex: 0 }}
                     />
@@ -234,7 +262,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
           {filteredRooms.length > 3 && (
             <button
               onClick={() => scroll('left')}
-              className="absolute left-[-20px] xl:left-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="absolute left-[-20px] xl:left-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 transition-all duration-300 cursor-pointer"
               aria-label="Slide left"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -245,7 +273,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
           {filteredRooms.length > 3 && (
             <button
               onClick={() => scroll('right')}
-              className="absolute right-[-20px] xl:right-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              className="absolute right-[-20px] xl:right-[-40px] top-1/2 -translate-y-1/2 z-30 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white border border-luxury-200 text-luxury-800 shadow-md hover:text-gold-600 hover:border-gold-500 transition-all duration-300 cursor-pointer"
               aria-label="Slide right"
             >
               <ChevronRight className="w-5 h-5" />
@@ -281,10 +309,10 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
                         <img
                           src={room.thumbnail}
                           alt={room.name}
-                          className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700 ease-out"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
                         />
                         <div className="absolute top-4 left-4 bg-luxury-950/80 backdrop-blur-sm px-3.5 py-1.5 text-xs font-semibold text-gold-400 tracking-wider rounded-full">
-                          Chỉ từ {room.priceDisplay} / đêm
+                          Chỉ từ {room.priceDisplay}
                         </div>
                       </div>
 
@@ -297,10 +325,6 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
                           
                           {/* Basic Room Specs */}
                           <div className="flex items-center space-x-6 text-xs text-luxury-500 font-medium tracking-wide mb-4">
-                            <span className="flex items-center gap-1.5">
-                              <Maximize2 className="w-3.5 h-3.5 text-gold-400" />
-                              {room.area} m²
-                            </span>
                             <span className="flex items-center gap-1.5">
                               <Users className="w-3.5 h-3.5 text-gold-400" />
                               {room.capacity}
@@ -500,7 +524,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
                   <div className="border-y border-luxury-200 py-4 mb-6 flex justify-between items-center">
                     <div>
                       <p className="text-xs text-luxury-400 tracking-normal font-semibold mb-1">
-                        Giá thuê / Đêm
+                        Giá thuê
                       </p>
                       <p className="text-xl sm:text-2xl font-display font-black text-gold-500">
                         {selectedRoom.priceDisplay}
@@ -508,10 +532,10 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-luxury-400 tracking-normal font-semibold mb-1">
-                        Diện tích & Sức chứa
+                        Sức chứa
                       </p>
                       <p className="text-sm font-semibold text-luxury-700">
-                        {selectedRoom.area} m² — {selectedRoom.capacity}
+                        {selectedRoom.capacity}
                       </p>
                     </div>
                   </div>

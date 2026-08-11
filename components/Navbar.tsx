@@ -161,30 +161,27 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/80 backdrop-blur-lg shadow-sm border-b border-slate-200/40 py-1.5'
-          : 'bg-white/40 backdrop-blur-md border-b border-transparent py-2.5'
+          ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-slate-200/60 py-1.5'
+          : 'bg-white/85 backdrop-blur-lg border-b border-slate-200/30 py-2.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand Logo */}
         <motion.button
           onClick={() => handleScrollTo('trang-chu')}
-          whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 15 }}
           className="flex items-center justify-center focus:outline-none cursor-pointer relative group"
         >
           {homedateData.brand.logoImage ? (
-            <div className={`rounded-full bg-white border border-slate-100/90 shadow-[0_4px_20px_rgba(0,0,0,0.08),0_0_15px_rgba(212,175,55,0.15)] flex items-center justify-center transition-all duration-500 overflow-hidden ${
-              isScrolled ? 'h-12 w-12 md:h-14 md:w-14' : 'h-18 w-18 md:h-22 md:w-22'
-            }`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={homedateData.brand.logoImage}
-                alt={homedateData.brand.name}
-                className="h-[75%] w-[75%] object-contain transition-all duration-500 group-hover:scale-110"
-              />
-            </div>
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={homedateData.brand.logoImage}
+              alt={homedateData.brand.name}
+              className={`object-contain transition-all duration-500 ${
+                isScrolled ? 'h-12 md:h-14 w-auto' : 'h-16 md:h-20 w-auto'
+              }`}
+            />
           ) : (
             <span className="text-xl md:text-2xl font-display font-bold tracking-wider text-gold-600">
               {homedateData.brand.logoText}
@@ -248,7 +245,6 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center space-x-2 px-4 py-2.5 rounded-full border bg-white/90 text-slate-800 transition-all duration-300 text-sm font-extrabold cursor-pointer focus:outline-none shadow-md relative group"
               >
@@ -256,7 +252,7 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
                   <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${currentTheme.pingClass} opacity-80`}></span>
                   <span className={`relative inline-flex rounded-full h-3 w-3 ${currentTheme.bulletClass} ${currentTheme.glowClass} border border-white`}></span>
                 </span>
-                <MapPin className={`w-4 h-4 ${currentTheme.textClass} transition-transform group-hover:scale-110`} />
+                <MapPin className={`w-4 h-4 ${currentTheme.textClass}`} />
                 <span>Chi nhánh: <span className={`${currentTheme.textClass} font-black`}>{formatBranchName(activeBranch.name)}</span></span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 text-slate-500 group-hover:${currentTheme.textClass} ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </motion.button>
@@ -297,7 +293,7 @@ export default function Navbar({ selectedBranchId, setSelectedBranchId }: Navbar
                           }}
                         >
                           <div className="flex items-center gap-2">
-                            <span className={`w-2.5 h-2.5 rounded-full ${bTheme.bulletClass} ${isActive ? 'scale-125' : 'scale-75 group-hover:scale-110'} transition-transform duration-300 ${isActive ? bTheme.glowClass : ''}`} />
+                            <span className={`w-2.5 h-2.5 rounded-full ${bTheme.bulletClass} ${isActive ? 'scale-125' : 'scale-75'} transition-transform duration-300 ${isActive ? bTheme.glowClass : ''}`} />
                             <span className={`text-sm font-bold ${isActive ? bTheme.textClass : 'text-slate-700 group-hover:' + bTheme.textClass}`}>{formatBranchName(branch.name)}</span>
                           </div>
                           <span className="text-[11px] text-slate-400 font-normal pl-4.5 line-clamp-1">{branch.address}</span>

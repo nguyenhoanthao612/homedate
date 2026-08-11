@@ -96,9 +96,9 @@ export interface HomedateConfig {
 export const homedateData: HomedateConfig = {
   brand: {
     name: "Alma Home",
-    slogan: "Không gian mộc mạc, chạm nhẹ xúc cảm bình yên",
+    slogan: "Your space, your moment",
     logoText: "Alma Home",
-    logoImage: "/logo.png", // Để trống để dùng logoText dạng chữ sang trọng
+    logoImage: "/logo.webp", // Để trống để dùng logoText dạng chữ sang trọng
     phone: "0336124797",
     phoneDisplay: "(+84) 336.124.797",
     email: "almahome.sg@gmail.com",
@@ -119,9 +119,9 @@ export const homedateData: HomedateConfig = {
     secondaryCtaText: "Xem phòng trống"
   },
   about: {
-    title: "Chạm đến bình yên giữa lòng Sài Gòn",
+    title: "KHÔNG GIAN RIÊNG TƯ GIỮA LÒNG THÀNH PHỐ",
     subtitle: "Về Alma Home",
-    description: "Nằm nép mình giữa những góc phố bình yên và rợp bóng cây xanh, Alma Home mang đến cho du khách một không gian nghỉ dưỡng đích thực, nơi tách biệt hoàn toàn khỏi những khói bụi ồn ào của phố thị. Tại đây, bạn sẽ được tận hưởng những phút giây thư thái nhất, lắng nghe tiếng chim hót líu lo chào ngày mới, và hít hà hương hoa thơm ngát phảng phất trong sân vườn ngập nắng. Alma Home tự hào kết hợp hoàn hảo giữa nét mộc mạc nguyên bản và tiện nghi hiện đại tinh tế, tạo nên một chốn dừng chân ấm cúng như chính ngôi nhà của bạn.",
+    description: "Giữa nhịp sống luôn vội của Sài Gòn, Alma Home tạo nên một khoảng riêng để bạn tạm rời khỏi những ồn ào bên ngoài và dành thời gian trọn vẹn cho người bên cạnh. Không gian được thiết kế ấm cúng, hiện đại và đề cao sự riêng tư, với những tiện ích vừa đủ cho một buổi hẹn, một ngày staycation hay đơn giản là vài giờ nghỉ ngơi thật thoải mái.\n\nTại Alma, mỗi căn phòng không chỉ là nơi để ở, mà là một không gian đúng để cảm xúc được gần nhau hơn.",
     images: [
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200",
@@ -147,13 +147,14 @@ export const homedateData: HomedateConfig = {
     },
     amenities: [
       { icon: "Wifi", label: "Wifi tốc độ cao" },
-      { icon: "Utensils", label: "Bếp nướng BBQ ngoài trời" },
-      { icon: "Car", label: "Bãi đỗ xe rộng rãi" },
-      { icon: "Coffee", label: "Quầy cafe tự phục vụ" },
-      { icon: "Flower2", label: "Sân vườn hoa rực rỡ" },
-      { icon: "Sparkles", label: "Dọn phòng hàng ngày" },
-      { icon: "Heart", label: "Tâm lý & Mến khách" },
-      { icon: "Flame", label: "Lò sưởi ấm cúng buổi tối" }
+      { icon: "KeyRound", label: "Check in tự động (riêng tư tuyệt đối)" },
+      { icon: "Clapperboard", label: "Rạp mini (Netflix & Youtube Premium)" },
+      { icon: "Car", label: "Bãi Đỗ xe Riêng tư (Xe máy và xe hơi)" },
+      { icon: "Building2", label: "Thang máy tiện nghi" },
+      { icon: "Wind", label: "Ban công thoáng mát" },
+      { icon: "Shirt", label: "Hỗ trợ giặt giũ" },
+      { icon: "Gamepad2", label: "BoardGame thú vị" },
+      { icon: "Sparkles", label: "Dọn phòng hàng ngày" }
     ]
   },
   rooms: [
@@ -164,7 +165,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 850000,
       priceDisplay: "850.000đ",
       area: 25,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=1200",
@@ -192,7 +193,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1350000,
       priceDisplay: "1.350.000đ",
       area: 40,
-      capacity: "2 người lớn, 1 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&q=80&w=1200",
@@ -220,7 +221,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 950000,
       priceDisplay: "950.000đ",
       area: 28,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200",
@@ -247,7 +248,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1100000,
       priceDisplay: "1.100.000đ",
       area: 35,
-      capacity: "2 người lớn, 1 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=1200",
@@ -274,7 +275,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1250000,
       priceDisplay: "1.250.000đ",
       area: 38,
-      capacity: "2 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&q=80&w=1200",
@@ -301,7 +302,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 2500000,
       priceDisplay: "2.500.000đ",
       area: 75,
-      capacity: "4 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1502672012114-1e5256e36d4a?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1502672012114-1e5256e36d4a?auto=format&fit=crop&q=80&w=1200",
@@ -328,7 +329,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1950000,
       priceDisplay: "1.950.000đ",
       area: 60,
-      capacity: "4 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=1200",
@@ -356,7 +357,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 950000,
       priceDisplay: "950.000đ",
       area: 30,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80&w=1200",
@@ -384,7 +385,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 800000,
       priceDisplay: "800.000đ",
       area: 28,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=1200",
@@ -410,7 +411,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1150000,
       priceDisplay: "1.150.000đ",
       area: 35,
-      capacity: "2 người lớn, 1 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200",
@@ -436,7 +437,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1700000,
       priceDisplay: "1.700.000đ",
       area: 50,
-      capacity: "2 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&q=80&w=1200",
@@ -462,7 +463,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1000000,
       priceDisplay: "1.000.000đ",
       area: 32,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200",
@@ -488,7 +489,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1500000,
       priceDisplay: "1.500.000đ",
       area: 45,
-      capacity: "2 người lớn, 1 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200",
@@ -516,7 +517,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 2200000,
       priceDisplay: "2.200.000đ",
       area: 70,
-      capacity: "4 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200",
@@ -544,7 +545,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 900000,
       priceDisplay: "900.000đ",
       area: 30,
-      capacity: "2 người lớn",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200",
@@ -570,7 +571,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 1200000,
       priceDisplay: "1.200.000đ",
       area: 36,
-      capacity: "2 người lớn, 1 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&q=80&w=1200",
@@ -596,7 +597,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 2100000,
       priceDisplay: "2.100.000đ",
       area: 55,
-      capacity: "2 người lớn, 2 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=1200",
@@ -622,7 +623,7 @@ export const homedateData: HomedateConfig = {
       basePrice: 2600000,
       priceDisplay: "2.600.000đ",
       area: 80,
-      capacity: "6 người lớn, 3 trẻ em",
+      capacity: "2 người",
       thumbnail: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=800",
       gallery: [
         "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1200",

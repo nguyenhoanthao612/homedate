@@ -98,7 +98,7 @@ export default function ContactFloating({ selectedBranchId }: ContactFloatingPro
                   <div className="w-14 flex justify-center">
                     <button
                       onClick={() => handleOpenLink(contact.link)}
-                      className={`${contact.color} w-11 h-11 flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 focus:outline-none cursor-pointer`}
+                      className={`${contact.color} w-11 h-11 flex items-center justify-center shadow-lg transition-all duration-300 focus:outline-none cursor-pointer`}
                       aria-label={contact.label}
                     >
                       <Icon className="w-5 h-5" />
@@ -114,7 +114,6 @@ export default function ContactFloating({ selectedBranchId }: ContactFloatingPro
       {/* Main Trigger Toggle Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={`w-14 h-14 flex items-center justify-center shadow-xl focus:outline-none relative cursor-pointer rounded-full ${
           isOpen ? 'bg-white text-gold-600 border border-slate-200' : 'bg-gold-500 hover:bg-gold-600 text-white shadow-gold-500/30'

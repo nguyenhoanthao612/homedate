@@ -44,14 +44,14 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
               <img
                 src={homedateData.brand.logoImage}
                 alt={homedateData.brand.name}
-                className="h-28 w-28 md:h-36 md:w-36 object-contain mb-4"
+                className="h-24 w-24 md:h-32 md:w-32 object-contain mb-1"
               />
             ) : (
-              <span className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-gold-600 block mb-3">
+              <span className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-gold-600 block mb-1">
                 {homedateData.brand.logoText}
               </span>
             )}
-            <p className="text-sm text-slate-500 leading-relaxed max-w-sm mt-3 italic">
+            <p className="text-sm text-slate-500 leading-relaxed max-w-sm mt-0.5 italic">
               {homedateData.brand.slogan}
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
               href={homedateData.brand.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-[#1877F2] hover:bg-[#166FE5] text-white rounded-full transition-all duration-300 shadow-lg shadow-[#1877F2]/10 hover:shadow-[#1877F2]/30 flex items-center justify-center cursor-pointer hover:scale-105"
+              className="p-3 bg-[#1877F2] hover:bg-[#166FE5] text-white rounded-full transition-all duration-300 shadow-lg shadow-[#1877F2]/10 hover:shadow-[#1877F2]/30 flex items-center justify-center cursor-pointer"
               aria-label="Visit Facebook Page"
             >
               <FacebookIcon className="w-5 h-5" />
@@ -95,7 +95,7 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
               href={homedateData.brand.messenger}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-gradient-to-tr from-[#00c6ff] via-[#0072ff] to-[#f857a6] text-white rounded-full transition-all duration-300 shadow-lg shadow-pink-500/10 hover:shadow-pink-500/30 flex items-center justify-center cursor-pointer hover:scale-105"
+              className="p-3 bg-gradient-to-tr from-[#00c6ff] via-[#0072ff] to-[#f857a6] text-white rounded-full transition-all duration-300 shadow-lg shadow-pink-500/10 hover:shadow-pink-500/30 flex items-center justify-center cursor-pointer"
               aria-label="Chat via Messenger"
             >
               <MessengerIcon className="w-5 h-5" />
@@ -104,7 +104,7 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
               href={homedateData.brand.zalo}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-[#0068FF] hover:bg-[#005AE0] text-white rounded-full transition-all duration-300 shadow-lg shadow-[#0068FF]/10 hover:shadow-[#0068FF]/30 flex items-center justify-center cursor-pointer hover:scale-105"
+              className="p-3 bg-[#0068FF] hover:bg-[#005AE0] text-white rounded-full transition-all duration-300 shadow-lg shadow-[#0068FF]/10 hover:shadow-[#0068FF]/30 flex items-center justify-center cursor-pointer"
               aria-label="Chat via Zalo"
             >
               <ZaloIcon className="w-5 h-5" />
@@ -114,7 +114,7 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
                 href={homedateData.brand.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-[#000000] hover:bg-[#111111] text-white rounded-full transition-all duration-300 shadow-lg shadow-black/15 hover:shadow-black/35 flex items-center justify-center cursor-pointer hover:scale-105"
+                className="p-3 bg-[#000000] hover:bg-[#111111] text-white rounded-full transition-all duration-300 shadow-lg shadow-black/15 hover:shadow-black/35 flex items-center justify-center cursor-pointer"
                 aria-label="Visit TikTok Profile"
               >
                 <TikTokIcon className="w-5 h-5" />
@@ -125,7 +125,7 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
                 href={homedateData.brand.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-full transition-all duration-300 shadow-lg shadow-purple-500/15 hover:shadow-purple-500/35 flex items-center justify-center cursor-pointer hover:scale-105"
+                className="p-3 bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white rounded-full transition-all duration-300 shadow-lg shadow-purple-500/15 hover:shadow-purple-500/35 flex items-center justify-center cursor-pointer"
                 aria-label="Visit Instagram Profile"
               >
                 <InstagramIcon className="w-5 h-5" />
@@ -155,12 +155,9 @@ export default function Footer({ selectedBranchId, setSelectedBranchId }: Footer
       </div>
 
       {/* Bottom Copyright details */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 border-t border-slate-200 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 font-medium tracking-wide">
-        <p className="text-center md:text-left mb-4 md:mb-0">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 border-t border-slate-200 pt-8 flex flex-col items-center justify-center text-xs text-slate-400 font-medium tracking-wide">
+        <p className="text-center">
           &copy; {currentYear} {homedateData.brand.name}. Tất cả các quyền được bảo lưu.
-        </p>
-        <p className="text-center md:text-right">
-          Thiết kế bởi <span className="text-gold-600 font-bold">{homedateData.brand.logoText}</span> — Đơn giản hóa bởi file cấu hình.
         </p>
       </div>
     </footer>

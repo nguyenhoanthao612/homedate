@@ -37,7 +37,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-luxury-950 tracking-normal leading-tight whitespace-nowrap"
+            className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-luxury-950 tracking-normal leading-tight"
           >
             {homedateData.about.title}
           </motion.h2>
@@ -68,29 +68,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-base sm:text-lg text-luxury-700 leading-relaxed text-justify"
+              className="text-base sm:text-lg text-luxury-700 leading-relaxed text-justify whitespace-pre-line"
             >
               {homedateData.about.description}
             </motion.p>
-
-            {/* Design Style Box */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-luxury-100 border border-luxury-200 rounded-3xl p-6 md:p-8 mt-8 shadow-sm"
-            >
-              <h4 className="font-display font-semibold text-luxury-500 tracking-normal text-sm mb-2">
-                Phong cách thiết kế
-              </h4>
-              <p className="font-display font-bold text-lg text-gold-500 mb-2">
-                {homedateData.about.designStyle.name}
-              </p>
-              <p className="text-sm text-luxury-600 leading-relaxed">
-                {homedateData.about.designStyle.description}
-              </p>
-            </motion.div>
           </div>
 
           {/* Interactive Image Slideshow */}
@@ -213,32 +194,31 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -8 }}
-                className="group relative bg-gradient-to-br from-slate-50/50 to-white hover:from-white hover:to-slate-50 border border-slate-100/80 hover:border-gold-300/60 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_16px_40px_-8px_rgba(212,175,55,0.12)] rounded-3xl p-8 lg:p-10 transition-all duration-500 overflow-hidden cursor-default flex flex-col justify-between min-h-[220px]"
+                className="group relative bg-gradient-to-br from-gold-50/60 via-white to-slate-50/50 border border-gold-300/80 shadow-[0_10px_30px_-6px_rgba(37,99,235,0.12)] hover:shadow-[0_18px_45px_-8px_rgba(37,99,235,0.2)] rounded-3xl p-8 lg:p-10 transition-all duration-500 overflow-hidden cursor-default flex flex-col justify-between min-h-[220px]"
               >
                 {/* Background ambient light flare */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/5 rounded-full blur-3xl group-hover:bg-gold-500/10 transition-all duration-500 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/15 rounded-full blur-2xl pointer-events-none" />
 
                 {/* Top left decorative line indicator */}
-                <div className="absolute top-0 left-8 w-12 h-[3px] bg-gradient-to-r from-gold-500 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute top-0 left-8 w-16 h-[3px] bg-gradient-to-r from-gold-500 via-gold-400 to-transparent transition-transform duration-500 origin-left" />
 
                 <div className="relative space-y-4">
                   {/* Floating Giant Number */}
-                  <span className="font-display font-black text-6xl lg:text-7xl text-slate-300 absolute -right-4 -top-6 select-none pointer-events-none transition-all duration-500 group-hover:text-gold-400/70 group-hover:scale-110 group-hover:-translate-y-1">
+                  <span className="font-display font-black text-6xl lg:text-7xl text-gold-400/60 absolute -right-4 -top-6 select-none pointer-events-none transition-all duration-500">
                     0{idx + 1}
                   </span>
 
                   <div className="flex items-center space-x-3 pt-2">
                     {/* Glowing Accent Bullet */}
-                    <div className="relative w-2 h-2 rounded-full bg-gold-500 group-hover:scale-125 transition-all duration-300">
-                      <span className="absolute inset-0 rounded-full bg-gold-400 animate-ping group-hover:inline-flex hidden" />
+                    <div className="relative w-2.5 h-2.5 rounded-full bg-gold-500 transition-all duration-300">
+                      <span className="absolute inset-0 rounded-full bg-gold-400 animate-ping inline-flex" />
                     </div>
-                    <h4 className="font-display font-bold text-lg lg:text-xl text-slate-900 tracking-tight group-hover:text-gold-600 transition-colors duration-300">
+                    <h4 className="font-display font-bold text-lg lg:text-xl text-gold-600 tracking-tight transition-colors duration-300">
                       {item.title}
                     </h4>
                   </div>
                   
-                  <p className="text-slate-600 group-hover:text-slate-700 leading-relaxed text-sm pl-5 transition-colors duration-300">
+                  <p className="text-slate-700 leading-relaxed text-sm pl-5 transition-colors duration-300">
                     {item.description}
                   </p>
                 </div>
@@ -278,7 +258,7 @@ export default function About() {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 relative z-10">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 relative z-10">
             {homedateData.about.amenities.map((item, idx) => {
               const IconComp = getIcon(item.icon);
               return (
@@ -288,32 +268,18 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover="hover"
-                  className="flex flex-col items-center text-center p-6 bg-white border border-slate-100/80 rounded-2xl hover:border-gold-300/60 hover:shadow-[0_12px_30px_-8px_rgba(212,175,55,0.12)] transition-all duration-300 group cursor-pointer relative overflow-hidden"
+                  className="flex flex-col items-center text-center p-5 md:p-6 bg-gradient-to-b from-white via-slate-50/30 to-gold-50/40 border border-gold-300/70 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.1)] rounded-2xl relative overflow-hidden w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(20%-1.25rem)] min-w-[150px] sm:min-w-[180px] max-w-[240px] cursor-default"
                 >
-                  {/* Glass shine sweep effect */}
-                  <motion.div
-                    initial={{ x: '-150%', opacity: 0 }}
-                    variants={{
-                      hover: {
-                        x: '200%',
-                        opacity: [0, 0.4, 0.4, 0],
-                        transition: { duration: 0.9, ease: "easeInOut" }
-                      }
-                    }}
-                    className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 pointer-events-none"
-                  />
-
                   {/* Tiny decorative luxury rivet at top */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-400/20 group-hover:bg-gold-500/60 transition-colors duration-300 shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold-500 shadow-[0_0_6px_rgba(37,99,235,0.4)]" />
                   </div>
 
                   <div className="relative mb-4 flex items-center justify-center">
                     {/* Double Outer Rings for Realistic Craftsmanship */}
-                    <div className="w-16 h-16 rounded-full border border-slate-100/80 flex items-center justify-center bg-slate-50/50 group-hover:border-gold-200/50 group-hover:bg-gold-50/30 transition-all duration-500 relative">
+                    <div className="w-16 h-16 rounded-full border border-gold-200/70 flex items-center justify-center bg-gold-50/60 relative shadow-sm">
                       {/* Inner gold plate wrapper */}
-                      <div className="w-12 h-12 rounded-full bg-white border border-slate-200/60 group-hover:border-gold-400 group-hover:bg-gradient-to-br group-hover:from-gold-400 group-hover:to-gold-500 text-gold-600 group-hover:text-white flex items-center justify-center transition-all duration-500 shadow-sm group-hover:scale-110 group-hover:rotate-6 overflow-hidden">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-white border border-gold-400 flex items-center justify-center shadow-md overflow-hidden">
                         {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
@@ -328,7 +294,7 @@ export default function About() {
                     </div>
                   </div>
 
-                  <span className="text-xs md:text-sm font-bold tracking-wide text-slate-700 group-hover:text-gold-600 transition-colors duration-300 relative z-10">
+                  <span className="text-xs md:text-sm font-bold tracking-wide text-gold-600 relative z-10">
                     {item.label}
                   </span>
                 </motion.div>

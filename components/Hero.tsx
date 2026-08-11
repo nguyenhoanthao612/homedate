@@ -76,32 +76,8 @@ export default function Hero({ selectedBranchId }: HeroProps) {
 
       {/* Content wrapper */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center">
-        <motion.span
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ 
-            opacity: 1, 
-            y: 0,
-            borderColor: ["rgba(226, 232, 240, 0.8)", "rgba(212, 175, 55, 0.7)", "rgba(226, 232, 240, 0.8)"],
-            boxShadow: [
-              "0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05)",
-              "0 10px 25px -5px rgba(212, 175, 55, 0.2), 0 8px 10px -6px rgba(212, 175, 55, 0.1)",
-              "0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05)"
-            ]
-          }}
-          transition={{ 
-            opacity: { duration: 0.8, ease: 'easeOut' },
-            y: { duration: 0.8, ease: 'easeOut' },
-            borderColor: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
-            boxShadow: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' }
-          }}
-          whileHover={{ scale: 1.05 }}
-          className="text-xs md:text-sm tracking-widest text-gold-600 bg-white/90 backdrop-blur-md border px-5 py-2.5 rounded-full font-bold uppercase mb-6 cursor-default select-none transition-transform"
-        >
-          {homedateData.brand.slogan}
-        </motion.span>
-
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-extrabold leading-tight mb-8 tracking-tight select-none flex justify-center flex-wrap"
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-extrabold leading-tight mb-4 tracking-tight select-none flex justify-center flex-wrap"
         >
           {homedateData.brand.name.split(" ").map((word, wordIdx) => (
             <span key={wordIdx} className="inline-flex mx-2 md:mx-4">
@@ -117,12 +93,12 @@ export default function Hero({ selectedBranchId }: HeroProps) {
                   }}
                   whileHover={{ 
                     scale: 1.15, 
-                    color: "#d4af37",
+                    color: "#ffffff",
                     transition: { duration: 0.2 } 
                   }}
-                  className="inline-block bg-gradient-to-br from-slate-900 via-gold-600 to-slate-950 bg-clip-text text-transparent cursor-pointer transition-shadow"
+                  className="inline-block text-[#1467b4] cursor-pointer transition-colors"
                   style={{
-                    textShadow: "0 0 30px rgba(212, 175, 55, 0.15)",
+                    textShadow: "0 0 30px rgba(20, 103, 180, 0.25)",
                   }}
                 >
                   {char}
@@ -131,6 +107,15 @@ export default function Hero({ selectedBranchId }: HeroProps) {
             </span>
           ))}
         </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+          className="text-base sm:text-lg md:text-2xl font-display font-bold text-[#174A78] tracking-wide mb-8 select-none"
+        >
+          {homedateData.brand.slogan}
+        </motion.p>
 
         {/* Action Buttons */}
         <motion.div

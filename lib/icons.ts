@@ -33,6 +33,13 @@ import {
   Home,
   Map,
   MessageSquareDiff,
+  KeyRound,
+  Shirt,
+  Gamepad2,
+  Wind,
+  Clapperboard,
+  Building2,
+  ShieldCheck,
   LucideIcon
 } from 'lucide-react';
 
@@ -71,7 +78,14 @@ export const iconMap: Record<string, LucideIcon> = {
   Info,
   Home,
   Map,
-  MessageSquareDiff
+  MessageSquareDiff,
+  KeyRound,
+  Shirt,
+  Gamepad2,
+  Wind,
+  Clapperboard,
+  Building2,
+  ShieldCheck
 };
 
 export function getIcon(name: string): LucideIcon {

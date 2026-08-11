@@ -34,6 +34,7 @@
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.8;
     font-weight: 400;
   }
@@ -48,6 +49,17 @@
     font-weight: 700;
     letter-spacing: normal;
   }
+}
+
+/* Performance & smooth rendering optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Custom transitions and scrollbar */

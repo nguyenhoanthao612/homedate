@@ -8,7 +8,6 @@ import Rooms from '@/components/Rooms';
 import Reviews from '@/components/Reviews';
 import ContactFloating from '@/components/ContactFloating';
 import Footer from '@/components/Footer';
-import RosePetalEffect from '@/components/RosePetalEffect';
 import { homedateData } from '@/data/homedate-config';
 
 export default function Home() {
@@ -20,9 +19,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between overflow-x-hidden">
-      {/* Interactive Floating Rose Petal click effect */}
-      <RosePetalEffect />
-
       {/* 1. Fixed Luxurious Navigation Bar with Branch Selector */}
       <Navbar selectedBranchId={selectedBranchId} setSelectedBranchId={setSelectedBranchId} />
 
