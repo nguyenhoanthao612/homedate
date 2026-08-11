@@ -15,8 +15,22 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://almahome.vercel.app'),
   title: "Alma Home | Your space your moment",
   description: "Alma Home hiện đại, sang trọng, không gian của bạn khoảnh khắc của bạn.",
+  openGraph: {
+    title: "Alma Home | Your space your moment",
+    description: "Alma Home hiện đại, sang trọng, không gian của bạn khoảnh khắc của bạn.",
+    url: "https://almahome.vercel.app/",
+    siteName: "Alma Home",
+    locale: "vi_VN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alma Home | Your space your moment",
+    description: "Alma Home hiện đại, sang trọng, không gian của bạn khoảnh khắc của bạn.",
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

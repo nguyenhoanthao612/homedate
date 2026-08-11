@@ -1,6 +1,6 @@
 {
-  "name": "Homedate Website",
-  "description": "Website giới thiệu Homedate hiện đại, sang trọng, tối ưu trải nghiệm người dùng và dễ dàng tùy biến.",
+  "name": "Alma Home",
+  "description": "Alma Home hiện đại, sang trọng, không gian của bạn khoảnh khắc của bạn.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
