@@ -15,8 +15,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Alma Home | Nghỉ Dưỡng Đà Lạt Đích Thực",
-  description: "Website giới thiệu Alma Home hiện đại, sang trọng, tối ưu trải nghiệm người dùng và dễ dàng tùy biến.",
+  title: "Alma Home | Your space your moment",
+  description: "Alma Home hiện đại, sang trọng, không gian của bạn khoảnh khắc của bạn.",
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
