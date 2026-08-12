@@ -52,7 +52,7 @@ export default function Reviews() {
         {/* Section Header */}
         <div className="text-center max-w-full mx-auto mb-16 md:mb-24">
           <span className="text-sm tracking-wide text-gold-600 font-bold block mb-3">
-            Cảm nhận từ khách hàng
+            CẢM NHẬN TỪ KHÁCH HÀNG
           </span>
           <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 tracking-normal whitespace-nowrap">
             Khách hàng nói gì về chúng tôi
