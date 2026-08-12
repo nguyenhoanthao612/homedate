@@ -232,9 +232,9 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-sm tracking-wide text-gold-600 font-semibold block mb-3"
+            className="text-sm tracking-wide text-gold-600 font-semibold block mb-3 uppercase"
           >
-            Nơi dừng chân hoàn hảo
+            KHÁM PHÁ KHÔNG GIAN
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
