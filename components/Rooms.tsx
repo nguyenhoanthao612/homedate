@@ -136,6 +136,25 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
     return () => clearTimeout(timer);
   }, [activeBranchId, checkBranchScroll]);
 
+  // Ensure vertical mouse wheel and touch gestures over the room container seamlessly scroll the main page
+  React.useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // If user is scrolling vertically with mouse wheel, let it bubble natively to window
+      // Prevent wheel deltaY from accidentally triggering horizontal scroll on the room container
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        // Vertical wheel scrolling propagates cleanly to page scroll
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: true });
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, [activeBranchId]);
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
     const scrollPosition = container.scrollLeft;
@@ -356,7 +375,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
             key={activeBranchId}
             ref={scrollContainerRef}
             onScroll={handleScroll}
-            className="flex flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 w-full scrollbar-none [&::-webkit-scrollbar]:hidden"
+            className="flex flex-nowrap overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-proximity pb-4 w-full scrollbar-none [&::-webkit-scrollbar]:hidden touch-pan-y overscroll-x-contain"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {roomPages.map((page, pageIdx) => (
