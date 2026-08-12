@@ -103,6 +103,39 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
   const [dragStartY, setDragStartY] = useState<number | null>(null);
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
+  // Branch tab scroll indicators and auto-scroll
+  const branchNavRef = React.useRef<HTMLDivElement>(null);
+  const activeBranchTabRef = React.useRef<HTMLButtonElement>(null);
+  const [canScrollBranchLeft, setCanScrollBranchLeft] = useState(false);
+  const [canScrollBranchRight, setCanScrollBranchRight] = useState(false);
+
+  const checkBranchScroll = React.useCallback(() => {
+    const el = branchNavRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollBranchLeft(scrollLeft > 2);
+    setCanScrollBranchRight(scrollLeft < scrollWidth - clientWidth - 2);
+  }, []);
+
+  React.useEffect(() => {
+    checkBranchScroll();
+    window.addEventListener('resize', checkBranchScroll);
+    return () => window.removeEventListener('resize', checkBranchScroll);
+  }, [checkBranchScroll]);
+
+  // Smooth scroll active tab into view when active branch changes
+  React.useEffect(() => {
+    if (activeBranchTabRef.current) {
+      activeBranchTabRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+    const timer = setTimeout(checkBranchScroll, 350);
+    return () => clearTimeout(timer);
+  }, [activeBranchId, checkBranchScroll]);
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const container = e.currentTarget;
     const scrollPosition = container.scrollLeft;
@@ -219,40 +252,78 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
         </div>
 
         {/* Branch Selection Segmented Control */}
-        <div className="flex justify-center mb-16 px-4">
-          <div className="bg-luxury-100/80 p-1.5 rounded-full inline-flex items-center gap-1.5 max-w-full overflow-x-auto scrollbar-none border border-luxury-200/50">
-            {homedateData.branches?.map((branch) => {
-              const isActive = branch.id === activeBranchId;
-              const branchRoomCount = homedateData.rooms.filter(r => r.branchId === branch.id).length;
-              const theme = branchSegmentThemes[branch.id] || defaultSegmentTheme;
-              return (
-                <button
-                  key={branch.id}
-                  onClick={() => {
-                    setActiveBranchId(branch.id);
-                    setSelectedBranchId?.(branch.id);
-                  }}
-                  className={`px-5 py-2.5 md:px-6 md:py-3 rounded-full font-display font-semibold text-sm md:text-base tracking-normal transition-colors duration-300 flex items-center gap-2 cursor-pointer relative whitespace-nowrap ${
-                    isActive ? 'text-white' : `text-luxury-700 ${theme.hoverClass}`
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeBranchSegment"
-                      className={`absolute inset-0 ${theme.bgClass} rounded-full ${theme.shadowClass}`}
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      style={{ zIndex: 0 }}
-                    />
-                  )}
-                  <span className="relative z-10">{formatBranchName(branch.name)}</span>
-                  <span className={`relative z-10 text-[10px] md:text-xs px-2 py-0.5 rounded-full font-sans transition-colors duration-300 ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-luxury-200 text-luxury-500'
-                  }`}>
-                    {branchRoomCount} phòng
-                  </span>
-                </button>
-              );
-            })}
+        <div className="relative max-w-full mx-auto mb-12 md:mb-16 px-2 sm:px-4">
+          <div className="relative max-w-4xl mx-auto flex items-center justify-center">
+            
+            {/* Left Edge Fade Indicator for Mobile/Scrollable */}
+            <AnimatePresence>
+              {canScrollBranchLeft && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-luxury-50 via-luxury-50/80 to-transparent z-20 pointer-events-none rounded-l-full"
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Right Edge Fade Indicator for Mobile/Scrollable */}
+            <AnimatePresence>
+              {canScrollBranchRight && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-luxury-50 via-luxury-50/80 to-transparent z-20 pointer-events-none rounded-r-full"
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Scrollable Tabs Wrapper */}
+            <div
+              ref={branchNavRef}
+              onScroll={checkBranchScroll}
+              className="bg-luxury-100/90 p-1.5 sm:p-2 rounded-full flex items-center gap-1.5 sm:gap-2 max-w-full overflow-x-auto no-scrollbar border border-luxury-200/60 shadow-xs touch-pan-x"
+              style={{
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {homedateData.branches?.map((branch) => {
+                const isActive = branch.id === activeBranchId;
+                const branchRoomCount = homedateData.rooms.filter(r => r.branchId === branch.id).length;
+                const theme = branchSegmentThemes[branch.id] || defaultSegmentTheme;
+                return (
+                  <button
+                    key={branch.id}
+                    ref={isActive ? activeBranchTabRef : null}
+                    onClick={() => {
+                      setActiveBranchId(branch.id);
+                      setSelectedBranchId?.(branch.id);
+                    }}
+                    className={`px-4 py-2.5 sm:px-6 sm:py-3 rounded-full font-display font-semibold text-xs sm:text-sm md:text-base tracking-normal transition-all duration-300 flex items-center gap-2 cursor-pointer relative whitespace-nowrap shrink-0 select-none ${
+                      isActive ? 'text-white shadow-xs' : `text-luxury-700 hover:bg-white/60 ${theme.hoverClass}`
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeBranchSegment"
+                        className={`absolute inset-0 ${theme.bgClass} rounded-full ${theme.shadowClass}`}
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        style={{ zIndex: 0 }}
+                      />
+                    )}
+                    <span className="relative z-10">{formatBranchName(branch.name)}</span>
+                    <span className={`relative z-10 text-[10px] sm:text-xs px-2 py-0.5 rounded-full font-sans transition-colors duration-300 font-normal ${
+                      isActive ? 'bg-white/25 text-white' : 'bg-luxury-200/80 text-luxury-600'
+                    }`}>
+                      {branchRoomCount} phòng
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
