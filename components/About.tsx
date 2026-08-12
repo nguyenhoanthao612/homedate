@@ -258,43 +258,32 @@ export default function About() {
             </div>
           </div>
           
-          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 md:gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4 md:gap-5 relative z-10">
             {homedateData.about.amenities.map((item, idx) => {
               const IconComp = getIcon(item.icon);
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 25 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-center text-center p-2.5 sm:p-5 md:p-6 bg-gradient-to-b from-white via-slate-50/30 to-gold-50/40 border border-gold-300/70 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.1)] rounded-xl sm:rounded-2xl relative overflow-hidden w-full cursor-default"
+                  transition={{ duration: 0.5, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  className="group flex items-center gap-3.5 p-3.5 sm:p-4 bg-white/90 backdrop-blur-sm border border-slate-200/70 hover:border-gold-300 shadow-xs hover:shadow-md hover:-translate-y-1 rounded-xl sm:rounded-2xl transition-all duration-300 cursor-default"
                 >
-                  {/* Tiny decorative luxury rivet at top */}
-                  <div className="absolute top-1.5 sm:top-2 left-1/2 -translate-x-1/2 flex items-center justify-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-500 shadow-[0_0_6px_rgba(37,99,235,0.4)]" />
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gold-50/80 group-hover:bg-gold-500 border border-gold-200/60 group-hover:border-gold-500 text-gold-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 shadow-2xs">
+                    {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        className="w-5 h-5 object-contain transition-all duration-300"
+                      />
+                    ) : (
+                      <IconComp className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                    )}
                   </div>
 
-                  <div className="relative mb-2 sm:mb-4 flex items-center justify-center mt-1 sm:mt-0">
-                    {/* Double Outer Rings for Realistic Craftsmanship */}
-                    <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full border border-gold-200/70 flex items-center justify-center bg-gold-50/60 relative shadow-sm">
-                      {/* Inner gold plate wrapper */}
-                      <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-white border border-gold-400 flex items-center justify-center shadow-md overflow-hidden">
-                        {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={item.icon}
-                            alt={item.label}
-                            className="w-4 h-4 sm:w-6 sm:h-6 object-contain transition-all duration-300"
-                          />
-                        ) : (
-                          <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <span className="text-[11px] sm:text-xs md:text-sm font-bold tracking-tight sm:tracking-wide text-gold-600 relative z-10 leading-tight">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-gold-700 transition-colors duration-300 leading-snug">
                     {item.label}
                   </span>
                 </motion.div>
