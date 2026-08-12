@@ -268,22 +268,22 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex items-center gap-3.5 p-3.5 sm:p-4 bg-white/90 backdrop-blur-sm border border-slate-200/70 hover:border-gold-300 shadow-xs hover:shadow-md hover:-translate-y-1 rounded-xl sm:rounded-2xl transition-all duration-300 cursor-default"
+                  className="group flex items-center gap-3.5 p-3.5 sm:p-4 bg-gradient-to-br from-white via-slate-50/50 to-gold-50/30 border border-gold-300/80 shadow-sm hover:shadow-md hover:border-gold-400 hover:-translate-y-1 rounded-xl sm:rounded-2xl transition-all duration-300 cursor-default"
                 >
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gold-50/80 group-hover:bg-gold-500 border border-gold-200/60 group-hover:border-gold-500 text-gold-600 group-hover:text-white flex items-center justify-center shrink-0 transition-all duration-300 shadow-2xs">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white border border-gold-400/80 flex items-center justify-center shrink-0 shadow-xs transition-transform duration-300 group-hover:scale-105">
                     {item.icon.startsWith('http') || item.icon.startsWith('/') || item.icon.includes('.') ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={item.icon}
                         alt={item.label}
-                        className="w-5 h-5 object-contain transition-all duration-300"
+                        className="w-5 h-5 object-contain transition-all duration-300 brightness-0 invert"
                       />
                     ) : (
-                      <IconComp className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                      <IconComp className="w-5 h-5 text-white" />
                     )}
                   </div>
 
-                  <span className="text-xs sm:text-sm font-semibold text-slate-800 group-hover:text-gold-700 transition-colors duration-300 leading-snug">
+                  <span className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-gold-700 transition-colors duration-300 leading-snug">
                     {item.label}
                   </span>
                 </motion.div>
