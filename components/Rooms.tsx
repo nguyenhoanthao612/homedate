@@ -348,7 +348,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
 
         {/* Horizontal Slider Area with arrows */}
         <div className="relative w-full group">
-          {/* Left Arrow Button (Desktop only) */}
+          {/* Left Arrow Button (Desktop) */}
           {filteredRooms.length > 3 && (
             <button
               onClick={() => scroll('left')}
@@ -359,7 +359,7 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
             </button>
           )}
 
-          {/* Right Arrow Button (Desktop only) */}
+          {/* Right Arrow Button (Desktop) */}
           {filteredRooms.length > 3 && (
             <button
               onClick={() => scroll('right')}
@@ -367,6 +367,34 @@ export default function Rooms({ selectedBranchId, setSelectedBranchId }: RoomsPr
               aria-label="Slide right"
             >
               <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+
+          {/* Left Arrow Button (Mobile Floating) */}
+          {filteredRooms.length > 3 && (
+            <button
+              onClick={() => scroll('left')}
+              disabled={currentPage === 0}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-30 flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-gold-300 text-slate-800 shadow-lg transition-all duration-300 cursor-pointer ${
+                currentPage === 0 ? 'opacity-20 pointer-events-none' : 'opacity-100 active:scale-95'
+              }`}
+              aria-label="Xem phòng trước"
+            >
+              <ChevronLeft className="w-5 h-5 text-gold-600" />
+            </button>
+          )}
+
+          {/* Right Arrow Button (Mobile Floating) */}
+          {filteredRooms.length > 3 && (
+            <button
+              onClick={() => scroll('right')}
+              disabled={currentPage === roomPages.length - 1}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-30 flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-gold-500 text-white border border-gold-400 shadow-lg shadow-gold-500/30 transition-all duration-300 cursor-pointer ${
+                currentPage === roomPages.length - 1 ? 'opacity-20 pointer-events-none' : 'opacity-100 active:scale-95 animate-pulse'
+              }`}
+              aria-label="Xem phòng tiếp theo"
+            >
+              <ChevronRight className="w-5 h-5 text-white" />
             </button>
           )}
 
